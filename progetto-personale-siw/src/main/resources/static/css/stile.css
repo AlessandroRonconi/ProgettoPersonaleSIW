@@ -1,0 +1,42 @@
+
+body {
+    color: black;          
+    background-color: white;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+--link
+a {
+    color: rgb(0, 149, 255);
+    font-weight: bold;
+}
+
+/* Link visitati*/
+a:visited {
+    color: rgb(96, 0, 128);
+}
+
+/* Link quando ci passi il mouse sopra */
+a:hover {
+    color: darkblue;
+    text-decoration:underline;
+}
+
+p {
+    color: black;
+}
+
+small, span {
+    color: black;
+}
+
+div {
+    color: black;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}
+
