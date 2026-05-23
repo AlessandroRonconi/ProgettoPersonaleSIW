@@ -16,24 +16,28 @@ public class Prenotazione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull(message = "La data e ora è obbligatoria")
     @Future(message = "La prenotazione deve essere per una data futura")
     @Column(nullable = false)
     private LocalDateTime dataOra;
-    
-    /*@Enumerated(EnumType.STRING) dice è utile se mi seerve uno storico, ho chiesto a chat
-    ma non penso a noi serva una cosa del genere?
-    @Column(nullable = false)
-    private StatoPrenotazione stato = StatoPrenotazione.CONFERMATA;*/
-    
+
+    /*
+     * @Enumerated(EnumType.STRING) dice è utile se mi seerve uno storico, ho
+     * chiesto a chat
+     * ma non penso a noi serva una cosa del genere?
+     * 
+     * @Column(nullable = false)
+     * private StatoPrenotazione stato = StatoPrenotazione.CONFERMATA;
+     */
+
     @Column(name = "data_prenotazione", updatable = false)
     private LocalDateTime dataPrenotazione = LocalDateTime.now();
-    
-    @ManyToOne //FK id_user in relazione prenotazione, qui prenotazione è owner
+
+    @ManyToOne // FK id_user in relazione prenotazione, qui prenotazione è owner
     private User user;
-    
-    @ManyToOne //FK id_pt in relazione prenotazione, qui prenotazione è owner
+
+    @ManyToOne // FK id_pt in relazione prenotazione, qui prenotazione è owner
     private Corso corso;
 
     public Long getId() {

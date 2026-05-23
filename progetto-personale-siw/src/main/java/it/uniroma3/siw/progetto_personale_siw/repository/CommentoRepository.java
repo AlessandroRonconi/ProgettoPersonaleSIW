@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import it.uniroma3.siw.progetto_personale_siw.model.Commento;
 
 @Repository
-public interface CommentoRepository extends CrudRepository<Commento,Long>{
+public interface CommentoRepository extends CrudRepository<Commento, Long> {
 
 }

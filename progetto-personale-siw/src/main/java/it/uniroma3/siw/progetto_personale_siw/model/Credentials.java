@@ -21,9 +21,10 @@ public class Credentials {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
-  @NotBlank(message = "Username obbligatorio")//Validazione prima di salvare
-  @Size(min = 3, max = 20, message = "Username deve essere tra 3 e 20 caratteri")//Validazione prima di salvare livello di JAVA
-  @Column(nullable = false, unique = true)//Vincolo dopo che JPA prova a salvare livello di DB
+  @NotBlank(message = "Username obbligatorio") // Validazione prima di salvare
+  @Size(min = 3, max = 20, message = "Username deve essere tra 3 e 20 caratteri") // Validazione prima di salvare
+                                                                                  // livello di JAVA
+  @Column(nullable = false, unique = true) // Vincolo dopo che JPA prova a salvare livello di DB
   private String username;
 
   @NotBlank(message = "Password obbligatoria")
@@ -31,77 +32,62 @@ public class Credentials {
   @Column(nullable = false, unique = false)
   private String password;
   private String ruolo;
-  
 
   @Valid
-  @OneToOne(cascade = CascadeType.ALL)  //significa chhe se salvi credential savli anche utente
+  @OneToOne(cascade = CascadeType.ALL) // significa chhe se salvi credential savli anche utente
   private User user;
-
 
   public static String getDefaultRole() {
     return DEFAULT_ROLE;
   }
 
-
   public static String getUserRole() {
     return USER_ROLE;
   }
-
 
   public static String getAdminRole() {
     return ADMIN_ROLE;
   }
 
-
   public Long getId() {
     return id;
   }
-
 
   public void setId(Long id) {
     this.id = id;
   }
 
-
   public String getUsername() {
     return username;
   }
-
 
   public void setUsername(String username) {
     this.username = username;
   }
 
-
   public String getPassword() {
     return password;
   }
-
 
   public void setPassword(String password) {
     this.password = password;
   }
 
-
   public String getRuolo() {
     return ruolo;
   }
-
 
   public void setRuolo(String ruolo) {
     this.ruolo = ruolo;
   }
 
-
   public User getUser() {
     return user;
   }
 
-
   public void setUser(User user) {
     this.user = user;
   }
-
 
   @Override
   public int hashCode() {
@@ -110,7 +96,6 @@ public class Credentials {
     result = prime * result + ((id == null) ? 0 : id.hashCode());
     return result;
   }
-
 
   @Override
   public boolean equals(Object obj) {
@@ -128,8 +113,5 @@ public class Credentials {
       return false;
     return true;
   }
-  
-  
-  
-}
 
+}

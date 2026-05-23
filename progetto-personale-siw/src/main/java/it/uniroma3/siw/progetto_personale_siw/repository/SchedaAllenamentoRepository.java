@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import it.uniroma3.siw.progetto_personale_siw.model.SchedaAllenamento;
 
 @Repository
-public interface SchedaAllenamentoRepository extends CrudRepository<SchedaAllenamento,Long>{
+public interface SchedaAllenamentoRepository extends CrudRepository<SchedaAllenamento, Long> {
 
 }

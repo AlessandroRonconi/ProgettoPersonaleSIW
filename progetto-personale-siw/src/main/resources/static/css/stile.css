@@ -1,13 +1,11 @@
-
 body {
-    color: black;          
+    color: black;
     background-color: white;
     font-family: Arial, sans-serif;
     margin: 20px;
 }
 
---link
-a {
+--link a {
     color: rgb(0, 149, 255);
     font-weight: bold;
 }
@@ -20,14 +18,15 @@ a:visited {
 /* Link quando ci passi il mouse sopra */
 a:hover {
     color: darkblue;
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 p {
     color: black;
 }
 
-small, span {
+small,
+span {
     color: black;
 }
 
@@ -35,8 +34,12 @@ div {
     color: black;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: rgb(255, 0, 0);
     font-weight: bold;
 }
-

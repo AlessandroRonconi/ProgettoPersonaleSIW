@@ -25,29 +25,29 @@ public class Corso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @NotBlank(message = "Il nome del corso è obbligatorio")
     @Column(nullable = false, unique = true)
     private String nome;
-    
+
     @Column(length = 500)
     private String descrizione;
-    
+
     @NotNull(message = "La durata della lezione è obbligatoria")
     @Positive(message = "La durata deve essere positiva")
     @Column(nullable = false)
-    private Integer durataLezione;  // in minuti
-    
+    private Integer durataLezione; // in minuti
+
     @NotBlank(message = "Il livello è obbligatorio")
     @Column(nullable = false)
-    private String livello;  
-    
+    private String livello;
+
     @NotNull(message = "La capacità massima è obbligatoria")
     @Min(value = 1, message = "La capacità minima è 1")
     @Column(nullable = false)
     private Integer capacita;
-    
-    //mappa giorno della settimana-orario es lunedi -> 09:00-11:00
+
+    // mappa giorno della settimana-orario es lunedi -> 09:00-11:00
     @ElementCollection
     @CollectionTable(name = "corso_orari", joinColumns = @JoinColumn(name = "corso_id"))
     @MapKeyColumn(name = "giorno")
@@ -156,5 +156,5 @@ public class Corso {
     public void setCommenti(List<Commento> commenti) {
         this.commenti = commenti;
     }
-    
+
 }

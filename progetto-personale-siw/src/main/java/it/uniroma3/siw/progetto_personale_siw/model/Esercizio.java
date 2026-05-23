@@ -3,7 +3,6 @@ package it.uniroma3.siw.progetto_personale_siw.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,27 +19,27 @@ public class Esercizio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @NotBlank(message = "Il nome dell'esercizio è obbligatorio")
     @Column(nullable = false, unique = true)
     private String nome;
-    
+
     @Column(length = 500)
     private String descrizione;
-    
+
     @NotBlank(message = "Le serie sono obbligatorie")
     @Positive(message = "Le serie devono essere un numero positivo")
     @Column(nullable = false)
     private Integer serie;
-    
+
     @NotBlank(message = "Le ripetizioni sono obbligatorie")
     @Positive(message = "Le ripetizioni devono essere un numero positivo")
     @Column(nullable = false)
     private Integer ripetizioni;
-    
+
     @Min(value = 0, message = "Il recupero non può essere negativo")
     private Integer recuperoSec;
-    
+
     @ManyToMany(mappedBy = "esercizi")
     private List<SchedaAllenamento> schede = new ArrayList<>();
 

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
 
 @Repository
-public interface EsercizioRepository extends CrudRepository<Esercizio,Long>{
+public interface EsercizioRepository extends CrudRepository<Esercizio, Long> {
 
 }

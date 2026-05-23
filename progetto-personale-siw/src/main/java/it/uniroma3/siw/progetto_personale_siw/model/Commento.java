@@ -1,6 +1,5 @@
 package it.uniroma3.siw.progetto_personale_siw.model;
 
-
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -24,13 +23,13 @@ public class Commento {
     public String testo;
 
     @Column(nullable = false)
-    public String autore; //è lo username
+    public String autore; // è lo username
 
     @Column(nullable = false)
     public LocalDateTime dataOra;
 
     @ManyToOne
-    private User user;  //commento è owner
+    private User user; // commento è owner
 
     @ManyToOne
     private Corso corso;
@@ -59,7 +58,6 @@ public class Commento {
         this.autore = autore;
     }
 
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -85,8 +83,6 @@ public class Commento {
         return true;
     }
 
-    
-
     public LocalDateTime getDataOra() {
         return dataOra;
     }
@@ -111,5 +107,4 @@ public class Commento {
         this.corso = corso;
     }
 
-    
 }

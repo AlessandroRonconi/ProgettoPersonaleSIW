@@ -3,7 +3,6 @@ package it.uniroma3.siw.progetto_personale_siw.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,26 +19,25 @@ public class PersonalTrainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotBlank(message = "Il nome è obbligatorio")
     @Size(min = 3, message = "Il nome deve avere almeno 3 lettere")
     @Column(nullable = false)
     private String nome;
-    
+
     @NotBlank(message = "Il cognome è obbligatorio")
     @Size(min = 4, max = 50, message = "Il cognome deve avere almeno 4 lettere")
     @Column(nullable = false)
     private String cognome;
-    
+
     @NotBlank(message = "La specialità è obbligatoria")
     @Column(nullable = false)
-    private String specialita;  // crossfit, bb (bodybuilding), yoga, pilates, etc.
-    
-    
+    private String specialita; // crossfit, bb (bodybuilding), yoga, pilates, etc.
+
     @Min(value = 0, message = "La tariffa oraria minima è 0€")
     @Column(nullable = false)
     private Integer tariffaOraria;
-    
+
     @OneToMany(mappedBy = "pt", cascade = CascadeType.ALL)
     private List<SchedaAllenamento> schedeAllenamento = new ArrayList<>();
 
@@ -85,8 +83,6 @@ public class PersonalTrainer {
     public void setTariffaOraria(Integer tariffaOraria) {
         this.tariffaOraria = tariffaOraria;
     }
-
-    
 
     public List<User> getUsers() {
         return users;

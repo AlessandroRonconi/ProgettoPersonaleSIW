@@ -22,33 +22,33 @@ public class SchedaAllenamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @NotNull(message = "La data di inizio è obbligatoria")
     @Future(message = "la data di inizio devee essere futura")
     @Column(nullable = false)
     private LocalDate dataInizio;
-    
+
     @FutureOrPresent(message = "La data di fine deve essere oggi o futura")
     @Future(message = "la data di fine devee essere futura")
     @Column(nullable = false)
     private LocalDate dataFine;
-    
+
     @NotBlank(message = "L'obiettivo è obbligatorio")
     @Size(min = 3, max = 100, message = "L'obiettivo deve essere tra 3 e 100 caratteri")
     @Column(nullable = false)
     private String obiettivo;
-    
+
     @Size(max = 1000, message = "Le note non possono superare 1000 caratteri")
     @Column(length = 1000)
     private String note;
-    
-    @ManyToOne //FK id_user in relazione schedaall, qui schedaall è owner
+
+    @ManyToOne // FK id_user in relazione schedaall, qui schedaall è owner
     private User user;
-    
-    @ManyToOne //FK id_pt in relazione schedaall, qui schedaall è owner
+
+    @ManyToOne // FK id_pt in relazione schedaall, qui schedaall è owner
     private PersonalTrainer pt;
-    
-    @ManyToMany//new table, è owner
+
+    @ManyToMany // new table, è owner
     private List<Esercizio> esercizi = new ArrayList<>();
 
     public Integer getId() {
@@ -139,10 +139,16 @@ public class SchedaAllenamento {
             return false;
         return true;
     }
-    
-    //questo qui sotto non l'ho benissimo capito non penso serva?
-    /*@ElementCollection
-    @CollectionTable(name = "schema_giorni_settimana", joinColumns = @JoinColumn(name = "schema_id"))
-    @Column(name = "giorno")
-    private List<String> giorniAllenamento;  // Es: ["LUNEDI", "MERCOLEDI", "VENERDI"]*/
+
+    // questo qui sotto non l'ho benissimo capito non penso serva?
+    /*
+     * @ElementCollection
+     * 
+     * @CollectionTable(name = "schema_giorni_settimana", joinColumns
+     * = @JoinColumn(name = "schema_id"))
+     * 
+     * @Column(name = "giorno")
+     * private List<String> giorniAllenamento; // Es: ["LUNEDI", "MERCOLEDI",
+     * "VENERDI"]
+     */
 }
