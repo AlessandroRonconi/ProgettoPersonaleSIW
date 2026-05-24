@@ -12,7 +12,12 @@ insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istr
 insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istruttore_id) values(nextval('corso_seq'), 'Pilates Mat', 'Rafforzamento del core e miglioramento posturale', 'Principiante', 18, 55, 151);
 insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istruttore_id) values(nextval('corso_seq'), 'Body Building', 'Allenamento per ipertrofia muscolare e forza', 'Avanzato', 10, 90, 201);
 
-insert into abbonamento(data_fine, data_inizio, durata_in_mesi, id, prezzo, tipo_di_abbonamento) values('2025-01-31', '2025-01-01', 1, nextval('abbonamento_seq'), 35, 'mensile');
-insert into abbonamento(data_fine, data_inizio, durata_in_mesi, id, prezzo, tipo_di_abbonamento) values('2025-01-31', '2025-01-01', 3, nextval('abbonamento_seq'), 90, 'trimestrale');
-insert into abbonamento(data_fine, data_inizio, durata_in_mesi, id, prezzo, tipo_di_abbonamento) values('2025-01-31', '2025-01-01', 6, nextval('abbonamento_seq'), 160, 'semestrale');
-insert into abbonamento(data_fine, data_inizio, durata_in_mesi, id, prezzo, tipo_di_abbonamento) values('2025-01-31', '2025-01-01', 12, nextval('abbonamento_seq'), 300, 'annuale');
+insert into tipo_abbonamento(id, nome, durata_in_mesi, prezzo) values(nextval('tipo_abbonamento_seq'), 'Mensile', 1, 35);
+insert into tipo_abbonamento(id, nome, durata_in_mesi, prezzo) values(nextval('tipo_abbonamento_seq'), 'Trimestrale', 3, 90);
+insert into tipo_abbonamento(id, nome, durata_in_mesi, prezzo) values(nextval('tipo_abbonamento_seq'), 'Semestrale', 6, 160);
+insert into tipo_abbonamento(id, nome, durata_in_mesi, prezzo) values(nextval('tipo_abbonamento_seq'), 'Annuale', 12, 300);
+
+insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 1);
+insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 51);
+insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 101);
+insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 151);

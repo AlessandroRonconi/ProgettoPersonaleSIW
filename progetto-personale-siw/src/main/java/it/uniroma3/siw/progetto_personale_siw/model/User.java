@@ -60,7 +60,7 @@ public class User { // utente registrato: dati personali nome, cognome, email
     @OneToMany(mappedBy = "user")
     private List<SchedaAllenamento> schedaAllenamento;
 
-    @ManyToOne // owner
+    @OneToOne // owner
     private Abbonamento abbonamento;
 
     @Override

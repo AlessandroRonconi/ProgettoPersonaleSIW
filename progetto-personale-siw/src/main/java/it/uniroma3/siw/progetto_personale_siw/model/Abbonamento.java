@@ -1,16 +1,16 @@
 package it.uniroma3.siw.progetto_personale_siw.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -19,10 +19,6 @@ public class Abbonamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @NotBlank(message = "il nome è obbligatorioo")
-    @Column(nullable = false)
-    private String tipoDiAbbonamento;
 
     @NotBlank(message = "la data di inizio è obbligatoria")
     @Future(message = "la data deve essere nel futuro")
@@ -34,17 +30,13 @@ public class Abbonamento {
     @Column(nullable = false)
     private LocalDate dataFine;
 
-    @NotBlank(message = "deve esserci un prezzo")
-    @Min(value = 0, message = "il prezzo deve essere posittivo")
-    @Column(nullable = false)
-    private Integer prezzo;
+    @NotBlank(message = "il tipo è obbligatorio")
+    @JoinColumn(name = "tipo_di_abbonamento_id")
+    @ManyToOne
+    private TipoAbbonamento tipoDiAbbonamento;
 
-    @NotBlank(message = "deve avere una durata")
-    @Column(name = "durataInMesi", nullable = false)
-    private Integer durataInMesi;
-
-    @OneToMany(mappedBy = "abbonamento")
-    private List<User> users;
+    @OneToOne
+    private User user;
 
     public Integer getId() {
         return id;
@@ -68,14 +60,6 @@ public class Abbonamento {
 
     public void setDataFine(LocalDate dataFine) {
         this.dataFine = dataFine;
-    }
-
-    public Integer getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(Integer prezzo) {
-        this.prezzo = prezzo;
     }
 
     @Override
@@ -103,27 +87,19 @@ public class Abbonamento {
         return true;
     }
 
-    public Integer getDurataInMesi() {
-        return durataInMesi;
+    public User getUser() {
+        return user;
     }
 
-    public void setDurataInMesi(Integer durataInMesi) {
-        this.durataInMesi = durataInMesi;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public String getTipoDiAbbonamento() {
+    public TipoAbbonamento getTipoDiAbbonamento() {
         return tipoDiAbbonamento;
     }
 
-    public void setTipoDiAbbonamento(String tipoDiAbbonamento) {
+    public void setTipoDiAbbonamento(TipoAbbonamento tipoDiAbbonamento) {
         this.tipoDiAbbonamento = tipoDiAbbonamento;
     }
 
