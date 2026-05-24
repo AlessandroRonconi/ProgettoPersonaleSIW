@@ -4,6 +4,7 @@ INSERT INTO users(id, nome, cognome, email, data_di_nascita) VALUES (nextval('us
 -- Credentials
 INSERT INTO credentials(id, username, password, ruolo, user_id) VALUES (nextval('credentials_seq'), 'admin', '$2a$12$/owdlKFr85U5oLlQTC7rB.l.T1iamiXx1ezJQw/1F/kxblrZlrwUa', 'ADMIN', 1);
 -- la password sopra equivale a franco
+
 -- Istruttori
 insert into istruttore(id, cognome, nome, specialita) values(nextval('istruttore_seq'), 'Esposito', 'Marco', 'istruttore di funzionale');
 insert into istruttore(id, cognome, nome, specialita) values(nextval('istruttore_seq'), 'Rossi', 'Laura', 'istruttore di yoga');
