@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Lista Abbonamenti</title>
     <link rel="stylesheet" href="/css/stile.css" />
 </head>
-
 <body>
 
-    <h1>Lista Abbonamenti</h1>
+<h1>Lista Abbonamenti</h1>
 
-    <div th:each="tipo_abbonamento : ${tipi_abbonamenti}">
+<div th:each="abbonamento : ${abbonamenti}">
 
-        <p th:text="${tipo_abbonamento.nome}"></p>
+    <p th:text="${abbonamento.tipoDiAbbonamento}"></p>
 
-        <p>
-            <strong>Durata in mesi:</strong>
-            <span th:text="${tipo_abbonamento.durataInMesi}"></span>
-        </p>
+    <p>
+        <strong>Durata in mesi:</strong>
+        <span th:text="${abbonamento.durataInMesi}"></span>
+    </p>
 
-        <p>
-            <strong>Prezzo:</strong>
-            <span th:text="${tipo_abbonamento.prezzo}"></span> €
-        </p>
+    <p>
+        <strong>Prezzo:</strong>
+        <span th:text="${abbonamento.prezzo}"></span> €
+    </p>
 
+    
 
+    <hr>
 
-        <hr>
-
-    </div>
+</div>
 
 </body>
-
 </html>
