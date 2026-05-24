@@ -9,20 +9,25 @@
 
 <body>
         <h1>Home</h1>
-        
-        <h2>Lista Corsi</h2>
-        <a th:href="@{/corsi}">Lista corsi</a> 
-            
-        <h2>Tipi abbonamenti</h2>
-        <a th:href="@{/tipi_abbonamenti}">tipi abbonamenti</a> 
+
+        <h2>
+                <a th:href="@{'/corsi'}">I nostri corsi</a>
+        </h2>
+
+        <h2>
+                <a th:href="@{'/tipi_abbonamenti'}">Gli abbonamenti che offriamo</a>
+        </h2>
+
+
+        <h2>
+                <a href="/login">Effettua il Login</a>
+        </h2>
+
+        <h2>
+                <a href="/register">Registrati</a>
+        </h2>
 
         <!--
-        <h2>Effettua il LogIn</h2>
-        <a href="/login">LogIn</a>
-
-        <h2>Registrazione</h2>
-        <a href="/register">Registrati</a>
-
         <form th:action="@{/logout}" method="POST">
                 <button type="submit">Logout</button>
         </form>
