@@ -23,7 +23,7 @@ import jakarta.validation.constraints.Positive;
 @Entity
 public class Corso {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotBlank(message = "Il nome del corso è obbligatorio")

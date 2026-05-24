@@ -54,7 +54,7 @@ public class SecurityConfig {
              */
             authorize.requestMatchers(HttpMethod.GET,
                     "/", "/index", "/login", "/register",
-                    "/css/**", "/images/**", "/favicon.ico").permitAll();
+                    "/css/**", "/images/**", "/favicon.ico","/corsi","/abbonamenti").permitAll();
             authorize.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll();
 
             authorize.anyRequest().authenticated();
@@ -66,7 +66,7 @@ public class SecurityConfig {
             form.failureHandler(customAuthenticationFailureHandler);// gestisce errori di login
         });
 
-        httpSecuity.logout(logout -> { // impleemetna qualcosa per logout
+        httpSecuity.logout(logout -> { // implemetna qualcosa per logout
             logout.logoutUrl("/logout");
             logout.logoutSuccessUrl("/");
             logout.invalidateHttpSession(true);

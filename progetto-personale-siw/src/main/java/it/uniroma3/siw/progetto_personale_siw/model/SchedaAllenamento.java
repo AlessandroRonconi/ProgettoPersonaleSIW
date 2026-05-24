@@ -20,7 +20,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class SchedaAllenamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull(message = "La data di inizio è obbligatoria")

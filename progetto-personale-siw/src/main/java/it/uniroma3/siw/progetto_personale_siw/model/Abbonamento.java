@@ -20,6 +20,10 @@ public class Abbonamento {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotBlank(message = "il nome è obbligatorioo")
+    @Column(nullable = false)
+    private String tipoDiAbbonamento;
+
     @NotBlank(message = "la data di inizio è obbligatoria")
     @Future(message = "la data deve essere nel futuro")
     @Column(nullable = false)
@@ -36,7 +40,7 @@ public class Abbonamento {
     private Integer prezzo;
 
     @NotBlank(message = "deve avere una durata")
-    @Column(nullable = false)
+    @Column(name = "durataInMesi", nullable = false)
     private Integer durataInMesi;
 
     @OneToMany(mappedBy = "abbonamento")
@@ -113,6 +117,14 @@ public class Abbonamento {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public String getTipoDiAbbonamento() {
+        return tipoDiAbbonamento;
+    }
+
+    public void setTipoDiAbbonamento(String tipoDiAbbonamento) {
+        this.tipoDiAbbonamento = tipoDiAbbonamento;
     }
 
 }

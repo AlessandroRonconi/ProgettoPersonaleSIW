@@ -14,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class Prenotazione {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull(message = "La data e ora è obbligatoria")

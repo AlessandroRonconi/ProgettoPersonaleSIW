@@ -3,16 +3,20 @@
 
 <head>
         <title>HomePage</title>
-        <link rel="stylesheet" th:href="@{/stile.css}" />
+        <link rel="stylesheet" th:href="@{/css/stile.css}" />
 
 </head>
 
 <body>
         <h1>Home</h1>
-        <!--
-        <h1>Lista Tornei</h1>
-        <a href="/tornei">Lista tornei</a>
+        
+        <h2>Lista Corsi</h2>
+        <a th:href="@{/corsi}">Lista corsi</a> 
+            
+        <h2>Tipi abbonamenti</h2>
+        <a th:href="@{/abbonamenti}">abbonamenti</a> 
 
+        <!--
         <h2>Effettua il LogIn</h2>
         <a href="/login">LogIn</a>
 
@@ -21,8 +25,8 @@
 
         <form th:action="@{/logout}" method="POST">
                 <button type="submit">Logout</button>
-        </form>-->
-
+        </form>
+        -->
 </body>
 
 </html>

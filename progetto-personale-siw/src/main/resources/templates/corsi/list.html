@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista Corsi</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<h1>Lista Corsi</h1>
+
+<div th:each="corso : ${corsi}">
+
+    <h2 th:text="${corso.nome}"></h2>
+
+    <p>
+        <strong>Descrizione:</strong>
+        <span th:text="${corso.descrizione}"></span>
+    </p>
+
+    <p>
+        <strong>Livello:</strong>
+        <span th:text="${corso.livello}"></span>
+    </p>
+
+    <p>
+        <strong>Istruttore:</strong>
+
+        <span th:text="${corso.istruttore.nome}"></span>
+
+        <span th:text="${corso.istruttore.cognome}"></span>
+    </p>
+
+    <hr>
+
+</div>
+
+</body>
+</html>

@@ -17,7 +17,7 @@ import jakarta.validation.constraints.Positive;
 public class Esercizio {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotBlank(message = "Il nome dell'esercizio è obbligatorio")
