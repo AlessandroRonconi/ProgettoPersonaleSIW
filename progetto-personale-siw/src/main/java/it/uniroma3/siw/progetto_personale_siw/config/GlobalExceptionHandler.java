@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import it.uniroma3.siw.progetto_personale_siw.model.ResourceNotFoundException;
 
-
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -19,7 +18,7 @@ public class GlobalExceptionHandler {
         model.addAttribute("errorMessage", e.getMessage());
         return "error/404";
     }
-    
+
     // 3. Gestisce TUTTI gli altri errori imprevisti (500)
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
