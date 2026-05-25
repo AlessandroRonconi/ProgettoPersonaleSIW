@@ -12,14 +12,14 @@
 <form th:action="@{/register}" method="POST" th:object="${credentials}">
     
     <div>
-        Username: <input requyred type="text" th:field="*{username}" required />
+        Username: <input type="text" th:field="*{username}" required />
         <span th:if="${#fields.hasErrors('username')}" 
                   th:errors="*{username}" 
                   style="color:red"></span>
     </div>
     
     <div>
-        Password: <input requyred type="password" th:field="*{password}" required />
+        Password: <input type="password" th:field="*{password}" required />
         <span th:if="${#fields.hasErrors('password')}" 
                   th:errors="*{password}" 
                   style="color:red"></span>
@@ -37,6 +37,14 @@
         <span th:if="${#fields.hasErrors('user.cognome')}" 
                   th:errors="*{user.cognome}" 
                   style="color:red"></span>
+    </div>
+
+    <div>
+        Data di nascita:<input type="date" th:field="*{user.dataDiNascita}" required />
+
+        <span th:if="${#fields.hasErrors('user.dataDiNascita')}"
+            th:errors="*{user.dataDiNascita}"
+            style="color:red"></span>
     </div>
 
     <div>

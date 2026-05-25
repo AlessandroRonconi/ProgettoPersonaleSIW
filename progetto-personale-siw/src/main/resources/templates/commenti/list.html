@@ -7,12 +7,12 @@
 
 <body>
 
-<!-- aggiungere commento loggati -->
+<!-- aggiungere commento loggati 
 <div sec:authorize="hasAnyAuthority('USER','ADMIN')">
-    <a th:href="@{'/corsi/' + ${corrso.id} + '/commenti/new'}"> Aggiungi commento</a>
+    <a th:href="@{'/corsi/' + ${corso.id} + '/commenti/new'}"> Aggiungi commento</a>
 </div>
 
-<hr/>
+<hr/>-->
 
 <!--lista vuota -->
 <div th:if="${#lists.isEmpty(commenti)}">
@@ -28,12 +28,12 @@
 
     <br/>
 
-    <!-- modifica se mio commento, non metto protezione perche i non loggati non possono nemmeno vedere i commenti 
+    <!-- modifica se mio commento, non metto protezione perche i non loggati non possono nemmeno vedere i commenti--> 
     
         <a th:if="${#authentication.name == c.autore}"
             th:href="@{'/corsi/' + ${corso.id} + '/commenti/' + ${c.id} + '/edit'}">
             Modifica
-        </a> -->
+        </a> 
     
 
 </div>

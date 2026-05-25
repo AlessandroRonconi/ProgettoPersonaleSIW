@@ -30,7 +30,7 @@
         <span th:text="${corso.istruttore.cognome}"></span>
     </p>
 
-    <a th:href="@{'/corsi'}">Mostra recensioni degli utenti</a>
+    <a th:href="@{'/corsi/' + ${corso.id} + '/commenti'}">Mostra recensioni degli utenti</a>
 
     <hr>
 

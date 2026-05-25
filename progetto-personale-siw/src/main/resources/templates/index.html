@@ -4,7 +4,19 @@
 <head>
         <title>HomePage</title>
         <link rel="stylesheet" th:href="@{/css/stile.css}" />
-
+        <span th:if="${userDetails != null}">
+                Sei loggato come: <b th:text="${userDetails.username}"></b>
+        </span>
+        <span th:if="${userDetails == null}">
+                Non sei loggato
+        </span>
+        <header>
+		<div th:if="${userDetails}">
+			<!--<span th:text="${userDetails.username}"></span>-->
+			<form th:action="@{/logout}" method="POST" style="display:inline;">
+				<button type="submit">Logout</button>
+			</form>
+	</header>
 </head>
 
 <body>
