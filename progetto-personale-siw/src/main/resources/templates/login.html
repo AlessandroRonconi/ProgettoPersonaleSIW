@@ -22,6 +22,11 @@
 	</header>
 
 	<h1>Login</h1>
+	
+	<p th:if="${errorMessage}" style="color: red;"><!--grazie a questo vedi l'erroree passato come parametro da authcontroller-->
+        <span th:text="${errorMessage}">Username o password non validi</span>
+    </p>
+
 	<form th:action="@{/login}" method="POST">
 			<div>
 				<span>Username:</span>
@@ -31,9 +36,11 @@
 				<span>Password:</span>
 				<span><input name="password" type="password" required /></span>
 			</div>
+			<!--
 			<div>
 				<span th:if="${param.error != null}">Username o password errati</span>
 			</div>
+			-->
 			<div>
 				<span><button type="submit">Login</button></span>
 			</div>

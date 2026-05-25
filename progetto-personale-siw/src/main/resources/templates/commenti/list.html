@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Commenti</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+
+<!-- aggiungere commento loggati -->
+<div sec:authorize="hasAnyAuthority('USER','ADMIN')">
+    <a th:href="@{'/corsi/' + ${corrso.id} + '/commenti/new'}"> Aggiungi commento</a>
+</div>
+
+<hr/>
+
+<!--lista vuota -->
+<div th:if="${#lists.isEmpty(commenti)}">
+    <p>Nessun commento</p>
+</div>
+
+<!-- la lista non è vuota -->
+<div th:each="c : ${commenti}" >
+    <p th:text="${c.testo}"></p>
+    <small>
+        scritto da: <span th:text="${c.autore}"></span>--
+    </small>
+
+    <br/>
+
+    <!-- modifica se mio commento, non metto protezione perche i non loggati non possono nemmeno vedere i commenti 
+    
+        <a th:if="${#authentication.name == c.autore}"
+            th:href="@{'/corsi/' + ${corso.id} + '/commenti/' + ${c.id} + '/edit'}">
+            Modifica
+        </a> -->
+    
+
+</div>
+
+<!--"/tornei/{id}/partite"
+<a th:href="@{'/tornei/' + ${torneo.id} + '/partite'}">Lista partite</a>-->
+
+</body>
+</html>

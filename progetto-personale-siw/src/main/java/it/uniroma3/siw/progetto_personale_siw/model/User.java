@@ -27,12 +27,12 @@ public class User { // utente registrato: dati personali nome, cognome, email
     private Integer id;
 
     @NotBlank(message = "Il nome è obbligatorio")
-    @Size(min = 2, max = 50, message = "Il nome deve avere almeno 2 caratteri")
+    @Size(min = 3, max = 50, message = "Il nome deve avere almeno 3 caratteri")
     @Column(nullable = false)
     private String nome;
 
     @NotBlank(message = "Il cognome è obbligatorio")
-    @Size(min = 2, max = 50, message = "Il cognome deve avere almeno 2 caratteri")
+    @Size(min = 4, max = 50, message = "Il cognome deve avere almeno 4 caratteri")
     @Column(nullable = false)
     private String cognome;
 
