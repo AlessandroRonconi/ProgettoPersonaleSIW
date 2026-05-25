@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calendario settimanale corsi</title>
+    <link rel="stylesheet" th:href="@{/css/stile.css}" />
+</head>
+
+<body>
+
+    <h1>Calendario settimanale corsi</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Lunedì</th>
+                <th>Martedì</th>
+                <th>Mercoledì</th>
+                <th>Giovedì</th>
+                <th>Venerdì</th>
+                <th>Sabato</th>
+                <th>Domenica</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Lunedi')}">
+                        <div class="corso">
+                            <div class="nome" th:text="${c.nome}"></div>
+                            <div th:text="${c.weekdayOrario.get('Lunedi')}"></div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Martedi')}">
+                        <div class="corso">
+                            <div class="nome" th:text="${c.nome}"></div>
+                            <div th:text="${c.weekdayOrario.get('Martedi')}"></div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Mercoledi')}">
+                        <div class="corso">
+                            <div class="nome" th:text="${c.nome}"></div>
+                            <div th:text="${c.weekdayOrario.get('Mercoledi')}"></div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Giovedi')}">
+                        <div class="corso">
+                            <div class="nome" th:text="${c.nome}"></div>
+                            <div th:text="${c.weekdayOrario.get('Giovedi')}"></div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Venerdi')}">
+                        <div class="corso">
+                            <div class="nome" th:text="${c.nome}"></div>
+                            <div th:text="${c.weekdayOrario.get('Venerdi')}"></div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Sabato')}">
+                        <div class="corso">
+                            <div class="nome" th:text="${c.nome}"></div>
+                            <div th:text="${c.weekdayOrario.get('Sabato')}"></div>
+                        </div>
+                    </div>
+                </td>
+
+                <td>
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Domenica')}">
+                        <div class="corso">
+                            <div class="nome" th:text="${c.nome}"></div>
+                            <div th:text="${c.weekdayOrario.get('Domenica')}"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

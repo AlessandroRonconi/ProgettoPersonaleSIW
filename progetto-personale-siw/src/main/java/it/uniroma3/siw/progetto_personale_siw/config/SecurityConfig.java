@@ -13,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static it.uniroma3.siw.progetto_personale_siw.model.Credentials.ADMIN_ROLE;
+
 //fai errrori con global extections handler
 //questo è backend, decido chi puo fare cosa
 @Configuration
@@ -54,19 +56,23 @@ public class SecurityConfig {
              */
             authorize.requestMatchers(HttpMethod.GET,
                     "/", "/index", "/login", "/register",
-                    "/css/**", "/images/**", "/favicon.ico","/corsi","/tipi_abbonamenti","/corsi/*/commenti").permitAll();
+                    "/css/**", "/images/**", "/favicon.ico", "/corsi", "/tipi_abbonamenti", "/corsi/*/commenti", "/corsi/calendario")
+                    .permitAll();
             authorize.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll();
 
-            authorize.anyRequest().authenticated();
+            authorize.requestMatchers(HttpMethod.GET, "/admin").hasAnyAuthority(ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.POST, "/admin").hasAnyAuthority(ADMIN_ROLE);
 
+            authorize.anyRequest().authenticated();
         });
+
         httpSecuity.formLogin(form -> {
             form.loginPage("/login").permitAll();
             form.defaultSuccessUrl("/", true);
             form.failureHandler(customAuthenticationFailureHandler);// gestisce errori di login
         });
 
-        httpSecuity.logout(logout -> { // implemetna qualcosa per logout
+        httpSecuity.logout(logout -> { // implementa qualcosa per logout
             logout.logoutUrl("/logout");
             logout.logoutSuccessUrl("/");
             logout.invalidateHttpSession(true);

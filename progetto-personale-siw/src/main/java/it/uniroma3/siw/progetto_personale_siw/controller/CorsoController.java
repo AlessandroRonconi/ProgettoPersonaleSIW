@@ -1,17 +1,12 @@
 package it.uniroma3.siw.progetto_personale_siw.controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import it.uniroma3.siw.progetto_personale_siw.model.Commento;
 import it.uniroma3.siw.progetto_personale_siw.service.CommentoService;
 import it.uniroma3.siw.progetto_personale_siw.service.CorsoService;
-import jakarta.validation.Valid;
+
 
 
 
@@ -37,6 +32,13 @@ public class CorsoController {
         model.addAttribute("commenti",this.commentoService.getCommentiByCorsoId(id));
         return "commenti/list";
     }
+
+    @GetMapping("/corsi/calendario")
+    public String showCalendario(Model model) {
+        model.addAttribute("corsi", this.corsoService.findAll());
+        return "corsi/calendario";
+    }
+    
 
     /*@GetMapping("/corsi/{id}/commenti/new")
     //addare un commento ad una partita specifica(quindi serve id della partita)

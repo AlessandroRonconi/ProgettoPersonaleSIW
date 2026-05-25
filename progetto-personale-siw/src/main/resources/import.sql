@@ -1,9 +1,11 @@
 -- Users
 INSERT INTO users(id, nome, cognome, email, data_di_nascita) VALUES (nextval('users_seq'), 'Admin', 'Admin', 'admin@palestra.it', '1990-01-01');
+INSERT INTO users(id, nome, cognome, email, data_di_nascita) VALUES (nextval('users_seq'), 'Giorgio', 'Bianchi', 'giorgiobianchi@gmail.com', '1986-05-06');
 
 -- Credentials
 INSERT INTO credentials(id, username, password, ruolo, user_id) VALUES (nextval('credentials_seq'), 'admin', '$2a$12$/owdlKFr85U5oLlQTC7rB.l.T1iamiXx1ezJQw/1F/kxblrZlrwUa', 'ADMIN', 1);
--- la password sopra equivale a franco
+INSERT INTO credentials(id, username, password, ruolo, user_id) VALUES (nextval('credentials_seq'), 'giorgio86', '$2a$12$7Vc.lGWRXJGmGZPDJXRNyexebBwMVcFhDa2GASJefTwvKPg1P8lmK', 'USER', 51);
+-- la password sopra equivale a franco, quella sotto a sus
 
 -- Istruttori
 insert into istruttore(id, cognome, nome, specialita) values(nextval('istruttore_seq'), 'Esposito', 'Marco', 'istruttore di funzionale');
@@ -18,6 +20,24 @@ insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istr
 insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istruttore_id) values(nextval('corso_seq'), 'CrossFit Intenso', 'Allenamento ad alta intensità per tutto il corpo', 'Intermedio', 12, 45, 101);
 insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istruttore_id) values(nextval('corso_seq'), 'Pilates Mat', 'Rafforzamento del core e miglioramento posturale', 'Principiante', 18, 55, 151);
 insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istruttore_id) values(nextval('corso_seq'), 'Body Building', 'Allenamento per ipertrofia muscolare e forza', 'Avanzato', 10, 90, 201);
+
+-- Orari dei corsi
+insert into corso_orari(corso_id, giorno, orario) values (1, 'Lunedi', '09:00-10:00');
+insert into corso_orari(corso_id, giorno, orario) values (1, 'Mercoledi', '09:00-10:00');
+insert into corso_orari(corso_id, giorno, orario) values (1, 'Venerdi', '09:00-10:00');
+
+insert into corso_orari(corso_id, giorno, orario) values (51, 'Martedi', '18:00-19:15');
+insert into corso_orari(corso_id, giorno, orario) values (51, 'Giovedi', '18:00-19:15');
+
+insert into corso_orari(corso_id, giorno, orario) values (101, 'Lunedi', '19:00-19:45');
+insert into corso_orari(corso_id, giorno, orario) values (101, 'Mercoledi', '19:00-19:45');
+insert into corso_orari(corso_id, giorno, orario) values (101, 'Sabato', '11:00-11:45');
+
+insert into corso_orari(corso_id, giorno, orario) values (151, 'Martedi', '10:00-10:55');
+insert into corso_orari(corso_id, giorno, orario) values (151, 'Giovedi', '10:00-10:55');
+
+insert into corso_orari(corso_id, giorno, orario) values (201, 'Lunedi', '20:00-21:30');
+insert into corso_orari(corso_id, giorno, orario) values (201, 'Venerdi', '20:00-21:30');
 
 -- Tipi di abbonamenti
 insert into tipo_abbonamento(id, nome, durata_in_mesi, prezzo) values(nextval('tipo_abbonamento_seq'), 'Mensile', 1, 35);

@@ -1,40 +1,47 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Lista Corsi</title>
     <link rel="stylesheet" href="/css/stile.css" />
 </head>
+
 <body>
 
-<h1>Lista Corsi</h1>
+    <h1>Lista Corsi</h1>
 
-<div th:each="corso : ${corsi}">
+    <div th:each="corso : ${corsi}">
 
-    <h2 th:text="${corso.nome}"></h2>
+        <h2 th:text="${corso.nome}"></h2>
 
-    <p>
-        <strong>Descrizione:</strong>
-        <span th:text="${corso.descrizione}"></span>
-    </p>
+        <p>
+            <strong>Descrizione:</strong>
+            <span th:text="${corso.descrizione}"></span>
+        </p>
 
-    <p>
-        <strong>Livello:</strong>
-        <span th:text="${corso.livello}"></span>
-    </p>
+        <p>
+            <strong>Livello:</strong>
+            <span th:text="${corso.livello}"></span>
+        </p>
 
-    <p>
-        <strong>Istruttore:</strong>
+        <p>
+            <strong>Istruttore:</strong>
 
-        <span th:text="${corso.istruttore.nome}"></span>
+            <span th:text="${corso.istruttore.nome}"></span>
 
-        <span th:text="${corso.istruttore.cognome}"></span>
-    </p>
+            <span th:text="${corso.istruttore.cognome}"></span>
+        </p>
 
-    <a th:href="@{'/corsi/' + ${corso.id} + '/commenti'}">Mostra recensioni degli utenti</a>
+        <a th:href="@{'/corsi/' + ${corso.id} + '/commenti'}">Mostra recensioni degli utenti</a>
 
-    <hr>
+        <hr>
 
-</div>
+    </div>
+
+    <h2>
+        <a href="/corsi/calendario">Calendario settimanale dei corsi</a>
+    </h2>
 
 </body>
+
 </html>

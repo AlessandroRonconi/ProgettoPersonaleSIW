@@ -44,3 +44,13 @@ h6 {
     color: rgb(255, 0, 0);
     font-weight: bold;
 }
+
+table, th, td {
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    vertical-align: top;
+}
