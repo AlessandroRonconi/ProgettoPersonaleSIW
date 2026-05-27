@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
 import it.uniroma3.siw.progetto_personale_siw.model.DuplicateCredentialsException;
+import it.uniroma3.siw.progetto_personale_siw.model.ResourceNotFoundException;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.repository.CredentialsRepository;
 import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
@@ -35,6 +36,11 @@ public class CredentialsService {
         credentials.setPassword(passwordEncoder.encode(credentials.getPassword()));
         credentials.setRuolo(Credentials.USER_ROLE);
         this.credentialsRepository.save(credentials);
+    }
+
+    @Transactional(readOnly = true)
+    public Credentials getCredentials(String username) {
+        return credentialsRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("Utente non trovato"));
     }
 
 }

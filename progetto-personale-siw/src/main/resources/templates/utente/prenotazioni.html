@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Le mie prenotazioni</title>
+</head>
+<body>
+
+<h1>Le mie prenotazioni</h1>
+
+<div th:if="${#lists.isEmpty(prenotazioni)}">
+    <p>Non hai ancora prenotazioni.</p>
+</div>
+
+<table th:if="${!#lists.isEmpty(prenotazioni)}" border="1">
+    <thead>
+    <tr>
+        <th>Corso</th>
+        <th>Data prenotazione</th>
+        <th>Data lezione</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="p : ${prenotazioni}">
+        <td th:text="${p.corso.nome}"></td>
+        <td th:text="${p.dataPrenotazione}"></td>
+        <td th:text="${p.dataOra}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

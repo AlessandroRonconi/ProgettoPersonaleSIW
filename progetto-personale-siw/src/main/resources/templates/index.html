@@ -39,6 +39,12 @@
                 <a href="/register">Registrati</a>
         </h2>
 
+        <h2>
+                <div sec:authorize="hasAnyAuthority('USER','ADMIN')">
+                        <a th:href="@{'/utente/profilo'}">User</a>
+                </div>
+        </h2>
+
         
 </body>
 

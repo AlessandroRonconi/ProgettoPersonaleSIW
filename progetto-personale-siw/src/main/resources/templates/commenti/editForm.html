@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+    <title>Modifica commento</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+  </head>
+  <body>
+    
+    <h1>Modifica il commento</h1>
+    <form th:action="@{'/corsi/' + ${corsoId} + '/commenti/' + ${commento.id} + '/edit'}" method="POST" th:object="${commento}">
+
+        <input type="hidden" th:field="*{id}" />
+
+      <div>
+        Testo: <span><input required type="text" th:field="*{testo}"/></span>
+        <span th:if="${#fields.hasErrors('testo')}" 
+                  th:errors="*{testo}" 
+                  style="color:red"></span>
+      </div>
+      
+        <span><button type="submit">Conferma</button></span>
+      
+    </form>
+  </body>
+</html>

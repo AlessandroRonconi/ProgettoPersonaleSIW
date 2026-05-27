@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Prenota corsi</title>
+</head>
+
+<body>
+
+<h1>Corsi disponibili</h1>
+
+<div th:each="c : ${corsi}">
+
+    <h3 th:text="${c.nome}"></h3>
+
+    <p>
+        Posti rimasti:
+        <span th:text="${c.capacita - c.prenotazioni.size()}"></span>
+    </p>
+
+    <form th:action="@{/utente/prenota/{corsoId}(corsoId=${c.id})}" method="post">
+        <button type="submit">Prenota</button>
+    </form>
+
+    <hr>
+
+</div>
+
+</body>
+</html>

@@ -60,6 +60,9 @@ public class Corso {
     @OneToMany(mappedBy = "corso")
     private List<Commento> commenti;
 
+    @OneToMany(mappedBy = "corso")
+    private List<Prenotazione> prenotazioni;
+
     public Integer getId() {
         return id;
     }
@@ -155,6 +158,14 @@ public class Corso {
 
     public void setCommenti(List<Commento> commenti) {
         this.commenti = commenti;
+    }
+
+    public List<Prenotazione> getPrenotazioni() {
+        return prenotazioni;
+    }
+
+    public void setPrenotazioni(List<Prenotazione> prenotazioni) {
+        this.prenotazioni = prenotazioni;
     }
 
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>  
+    <head>
+    <title>Nuovo commento</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+  </head>
+  <body>
+    
+    <h1>Aggiungi un commento</h1>
+    <form th:action="@{'/corsi/' + ${corso.id} + '/commenti/new'}" method="POST" th:object="${commento}">
+      
+      <div>
+        Testo: <span><input required type="text" th:field="*{testo}"/></span>
+         <span th:if="${#fields.hasErrors('testo')}" 
+                  th:errors="*{testo}" 
+                  style="color:red"></span>
+      </div>
+      
+        <span><button type="submit">Conferma</button></span>
+      
+    </form>
+  </body>
+</html>

@@ -19,6 +19,7 @@ import jakarta.validation.Valid;
 
 
 
+
 @Controller
 public class CorsoController {
 
@@ -95,6 +96,9 @@ public class CorsoController {
         commentoService.save(commentoOld);
         return "redirect:/corsi/" + corsoId + "/commenti";
     }
+
+    
+    
 
     
 }

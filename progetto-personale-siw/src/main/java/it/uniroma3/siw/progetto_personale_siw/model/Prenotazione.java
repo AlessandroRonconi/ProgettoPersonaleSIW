@@ -22,6 +22,15 @@ public class Prenotazione {
     @Column(nullable = false)
     private LocalDateTime dataOra;
 
+    @Column(name = "data_prenotazione", updatable = false)
+    private LocalDateTime dataPrenotazione = LocalDateTime.now();
+
+    @ManyToOne // FK id_user in relazione prenotazione, qui prenotazione è owner
+    private User user;
+
+    @ManyToOne // FK id_pt in relazione prenotazione, qui prenotazione è owner
+    private Corso corso;
+
     /*
      * @Enumerated(EnumType.STRING) dice è utile se mi seerve uno storico, ho
      * chiesto a chat
@@ -31,14 +40,6 @@ public class Prenotazione {
      * private StatoPrenotazione stato = StatoPrenotazione.CONFERMATA;
      */
 
-    @Column(name = "data_prenotazione", updatable = false)
-    private LocalDateTime dataPrenotazione = LocalDateTime.now();
-
-    @ManyToOne // FK id_user in relazione prenotazione, qui prenotazione è owner
-    private User user;
-
-    @ManyToOne // FK id_pt in relazione prenotazione, qui prenotazione è owner
-    private Corso corso;
 
     public Long getId() {
         return id;
