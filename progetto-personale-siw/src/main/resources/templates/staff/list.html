@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Staff</title>
+    <link rel="stylesheet" href="/css/stile.css">
+</head>
+
+<body>
+    <h1>Il nostro Staff</h1>
+    <section class="staff-section">
+        <h2>Istruttori Corsi</h2>
+        <div class="flex-container">
+            <div class="card" th:each="istruttore:${istruttori}">
+                <h3 th:text="${istruttore.nome} + ' ' + ${istruttore.cognome}">Mario Rossi</h3>
+                <p><strong>Specialità:</strong> <span th:text="${istruttore.specialita}">Istruttore di tiro alla
+                        fune</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="staff-section">
+        <h2>Personal Trainers</h2>
+        <div class="flex-container">
+            <div class="card" th:each="pt:${personalTrainers}">
+                <h3 th:text="${pt.nome} + ' ' + ${pt.cognome}">Mario Rossi</h3>
+                <p><strong>Specialità:</strong> <span th:text="${pt.specialita}">Istruttore di tiro alla fune</span></p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

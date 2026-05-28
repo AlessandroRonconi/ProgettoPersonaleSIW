@@ -58,7 +58,7 @@ public class SecurityConfig {
             authorize.requestMatchers(HttpMethod.GET,
                     "/", "/index", "/login", "/register",
                     "/css/**", "/images/**", "/favicon.ico", "/corsi", "/tipi_abbonamenti", "/corsi/*/commenti",
-                    "/corsi/calendario")
+                    "/corsi/calendario", "/staff")
                     .permitAll();
             authorize.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll();
 
