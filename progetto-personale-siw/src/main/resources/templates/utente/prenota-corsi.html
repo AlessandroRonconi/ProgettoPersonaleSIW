@@ -3,6 +3,7 @@
 
 <head>
     <title>Prenota corsi</title>
+    <link rel="stylesheet" href="/css/stile.css" />
 </head>
 
 <body>
@@ -18,7 +19,7 @@
         <span th:text="${c.capacita - c.prenotazioni.size()}"></span>
     </p>
 
-    <form th:action="@{/utente/prenota/{corsoId}(corsoId=${c.id})}" method="post">
+    <form th:action="@{'/utente/prenota/' + ${c.id}}" method="post">
         <button type="submit">Prenota</button>
     </form>
 

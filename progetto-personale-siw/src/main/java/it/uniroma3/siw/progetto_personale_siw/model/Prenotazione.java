@@ -8,8 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Prenotazione {
@@ -17,13 +15,8 @@ public class Prenotazione {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull(message = "La data e ora è obbligatoria")
-    @Future(message = "La prenotazione deve essere per una data futura")
-    @Column(nullable = false)
-    private LocalDateTime dataOra;
-
     @Column(name = "data_prenotazione", updatable = false)
-    private LocalDateTime dataPrenotazione = LocalDateTime.now();
+    private LocalDateTime dataOra = LocalDateTime.now();
 
     @ManyToOne // FK id_user in relazione prenotazione, qui prenotazione è owner
     private User user;
@@ -35,11 +28,13 @@ public class Prenotazione {
      * @Enumerated(EnumType.STRING) dice è utile se mi seerve uno storico, ho
      * chiesto a chat
      * ma non penso a noi serva una cosa del genere?
+     * no non serve
      * 
      * @Column(nullable = false)
      * private StatoPrenotazione stato = StatoPrenotazione.CONFERMATA;
+     * 
+     * ma no dai non serve neanche lo stato
      */
-
 
     public Long getId() {
         return id;
@@ -47,22 +42,6 @@ public class Prenotazione {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public LocalDateTime getDataOra() {
-        return dataOra;
-    }
-
-    public void setDataOra(LocalDateTime dataOra) {
-        this.dataOra = dataOra;
-    }
-
-    public LocalDateTime getDataPrenotazione() {
-        return dataPrenotazione;
-    }
-
-    public void setDataPrenotazione(LocalDateTime dataPrenotazione) {
-        this.dataPrenotazione = dataPrenotazione;
     }
 
     public User getUser() {
@@ -104,5 +83,13 @@ public class Prenotazione {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public LocalDateTime getDataOra() {
+        return dataOra;
+    }
+
+    public void setDataOra(LocalDateTime dataOra) {
+        this.dataOra = dataOra;
     }
 }

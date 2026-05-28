@@ -21,7 +21,7 @@ import jakarta.validation.constraints.Size;
 public class SchedaAllenamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @NotNull(message = "La data di inizio è obbligatoria")
     @Future(message = "la data di inizio devee essere futura")
@@ -51,11 +51,11 @@ public class SchedaAllenamento {
     @ManyToMany // new table, è owner
     private List<Esercizio> esercizi = new ArrayList<>();
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

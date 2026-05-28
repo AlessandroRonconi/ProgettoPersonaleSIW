@@ -18,7 +18,7 @@ public class Abbonamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "la data di inizio è obbligatoria")
     @Future(message = "la data deve essere nel futuro")
@@ -38,11 +38,11 @@ public class Abbonamento {
     @OneToOne
     private User user;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

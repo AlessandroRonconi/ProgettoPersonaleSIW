@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotNull;
 public class TipoAbbonamento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @NotBlank(message = "deve avere un nome")
     @Column(nullable = false)
@@ -28,11 +28,11 @@ public class TipoAbbonamento {
     @Column(name = "durataInMesi", nullable = false)
     private Integer durataInMesi;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

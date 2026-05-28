@@ -11,25 +11,24 @@ import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.service.CredentialsService;
 import it.uniroma3.siw.progetto_personale_siw.service.PrenotazioneService;
 
-
 @Controller
 public class PrenotazioneController {
 
     private PrenotazioneService prenotazioneService;
     private CredentialsService credentialsService;
-    public PrenotazioneController(PrenotazioneService prenotazioneService, CredentialsService credentialsService){
+
+    public PrenotazioneController(PrenotazioneService prenotazioneService, CredentialsService credentialsService) {
         this.prenotazioneService = prenotazioneService;
         this.credentialsService = credentialsService;
     }
 
-    /*@PostMapping("/prenota/{id}")
+    @PostMapping("/utente/prenota/{id}")
     public String prenotazione(@PathVariable Long id, @AuthenticationPrincipal UserDetails userDetails) {
         Credentials cred = this.credentialsService.getCredentials(userDetails.getUsername());
         User user = cred.getUser();
-        prenotazioneService.prenota(user,id);
-        
+        prenotazioneService.prenota(user.getId(), id);
+
         return "redirect:/utente/prenotazioni";
-    }*/
-    
+    }
 
 }

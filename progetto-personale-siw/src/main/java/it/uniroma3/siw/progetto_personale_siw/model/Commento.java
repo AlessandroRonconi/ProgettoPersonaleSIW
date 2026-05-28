@@ -15,7 +15,7 @@ import jakarta.validation.constraints.Size;
 public class Commento {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer id;
+    public Long id;
 
     @NotBlank(message = "Il commento non può essere vuoto")
     @Size(min = 5, max = 100, message = "Il commento deve essere tra 5 e 100 caratteri")
@@ -34,11 +34,11 @@ public class Commento {
     @ManyToOne
     private Corso corso;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,10 +1,8 @@
 package it.uniroma3.siw.progetto_personale_siw.service;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,20 +12,26 @@ import it.uniroma3.siw.progetto_personale_siw.model.ResourceNotFoundException;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.repository.CorsoRepository;
 import it.uniroma3.siw.progetto_personale_siw.repository.PrenotazioneRepository;
+import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
 
 @Service
 @Transactional
 public class PrenotazioneService {
 
+    private UserRepository userRepository;
     private CorsoRepository corsoRepository;
     private PrenotazioneRepository prenotazioneRepository;
-    public PrenotazioneService(CorsoRepository corsoRepository, PrenotazioneRepository prenotazioneRepository){
+
+    public PrenotazioneService(CorsoRepository corsoRepository, PrenotazioneRepository prenotazioneRepository, UserRepository userRepository) {
+        this.userRepository = userRepository;
         this.prenotazioneRepository = prenotazioneRepository;
         this.corsoRepository = corsoRepository;
     }
-    public void prenota(User user, Long corsoId) {
+
+    public void prenota(Long userId, Long corsoId) {
+        User user = this.userRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Utente non trovato"));
         Corso corso = this.corsoRepository.findById(corsoId).orElseThrow(() -> new ResourceNotFoundException("Corso non trovato"));
-        long iscritti = this.prenotazioneRepository.countByCorso(corso);
+        Long iscritti = this.prenotazioneRepository.countByCorso(corso);
         if(iscritti >= corso.getCapacita()){
             throw new RuntimeException("Corso Pieno");
         }
@@ -43,8 +47,9 @@ public class PrenotazioneService {
 
         prenotazioneRepository.save(p);
     }
+
     public List<Prenotazione> findByUser(User user) {
         return prenotazioneRepository.findByUser(user);
-}
+    }
 
 }
