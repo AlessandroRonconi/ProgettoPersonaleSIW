@@ -15,8 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
 
-import static it.uniroma3.siw.progetto_personale_siw.model.Credentials.ADMIN_ROLE;
-
 //fai errrori con global extections handler
 //questo è backend, decido chi puo fare cosa
 @Configuration
@@ -50,20 +48,24 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecuity) throws Exception {
 
         httpSecuity.authorizeHttpRequests(authorize -> {
-            
-            //authorize.requestMatchers().hasAuthority();
-            //authorize.requestMatchers().hasAuthority();
-            authorize.requestMatchers(HttpMethod.GET, "/utente/profilo").hasAnyAuthority(Credentials.USER_ROLE,Credentials.ADMIN_ROLE);
-            //authorize.requestMatchers().hasAnyAuthority();
-             
+
+            // authorize.requestMatchers().hasAuthority();
+            // authorize.requestMatchers().hasAuthority();
+            authorize.requestMatchers(HttpMethod.GET, "/utente/profilo").hasAnyAuthority(Credentials.USER_ROLE,
+                    Credentials.ADMIN_ROLE);
+            // authorize.requestMatchers().hasAnyAuthority();
+
             authorize.requestMatchers(HttpMethod.GET,
                     "/", "/index", "/login", "/register",
-                    "/css/**", "/images/**", "/favicon.ico", "/corsi", "/tipi_abbonamenti", "/corsi/*/commenti", "/corsi/calendario")
+                    "/css/**", "/images/**", "/favicon.ico", "/corsi", "/tipi_abbonamenti", "/corsi/*/commenti",
+                    "/corsi/calendario")
                     .permitAll();
             authorize.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll();
 
-            //authorize.requestMatchers(HttpMethod.GET, "/admin").hasAnyAuthority(ADMIN_ROLE);
-            //authorize.requestMatchers(HttpMethod.POST, "/admin").hasAnyAuthority(ADMIN_ROLE);
+            // authorize.requestMatchers(HttpMethod.GET,
+            // "/admin").hasAnyAuthority(ADMIN_ROLE);
+            // authorize.requestMatchers(HttpMethod.POST,
+            // "/admin").hasAnyAuthority(ADMIN_ROLE);
 
             authorize.anyRequest().authenticated();
         });
