@@ -20,7 +20,7 @@
         </p>
 
         <div th:if="${corsiPrenotatiIds != null && #sets.contains(corsiPrenotatiIds, c.id)}">
-            <button type="button" disabled style="background-color: #ccc; cursor: not-allowed;">Già prenotato</button>
+            <button type="button" disabled>Già prenotato</button>
         </div>
 
         <div th:unless="${corsiPrenotatiIds != null && #sets.contains(corsiPrenotatiIds, c.id)}">

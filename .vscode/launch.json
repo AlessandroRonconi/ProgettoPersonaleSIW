@@ -8,7 +8,8 @@
             "mainClass": "it.uniroma3.siw.progetto_personale_siw.ProgettoPersonaleSiwApplication",
             "projectName": "progetto-personale-siw",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": "-Dfile.encoding=UTF-8"
         }
     ]
 }

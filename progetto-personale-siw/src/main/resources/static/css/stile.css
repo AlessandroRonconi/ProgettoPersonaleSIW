@@ -54,3 +54,46 @@ th, td {
     padding: 8px;
     vertical-align: top;
 }
+
+/* ==========================================================================
+   AGGIUNTE COMPONENTI BOTTONI (PRENOTAZIONI)
+   ========================================================================== */
+
+/* Stile base per tutti i bottoni del sito per renderli omogenei */
+button {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    padding: 6px 12px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 4px; /* Un leggero raggio per farli più moderni */
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Transizione fluida al passaggio del mouse */
+}
+
+/* Pulsante prenota standard (attivo) */
+button[type="submit"]:not(.btn-cancella) {
+    background-color: rgb(0, 149, 255);
+    color: white;
+}
+
+button[type="submit"]:not(.btn-cancella):hover {
+    background-color: darkblue;
+}
+
+/* Pulsante quando il corso è già prenotato (Disabilitato) */
+button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Pulsante per cancellare/disdire la prenotazione */
+.btn-cancella {
+    background-color: #d9534f;
+    color: white;
+}
+
+.btn-cancella:hover {
+    background-color: #c9302c;
+}

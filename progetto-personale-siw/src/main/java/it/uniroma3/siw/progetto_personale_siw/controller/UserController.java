@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
 import it.uniroma3.siw.progetto_personale_siw.model.Prenotazione;
@@ -72,6 +74,29 @@ public class UserController {
         model.addAttribute("prenotazioni", prenotazioni);
         model.addAttribute("utente", user);
         return "utente/prenotazioni";
+    }
+
+    @PostMapping("/utente/prenotazioni/cancella/{id}")
+    public String cancellaPrenotazione(@PathVariable("id") Long id, @AuthenticationPrincipal UserDetails userDetails) {
+        // Opzionale ma consigliato per sicurezza: verificare che la prenotazione
+        // appartenga davvero all'utente loggato
+        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+        User user = credentials.getUser();
+
+        // Recuperiamo la lista delle prenotazioni dell'utente per sicurezza
+        List<Prenotazione> prenotazioniUtente = prenotazioneService.findByUser(user);
+
+        // Controlliamo se la prenotazione da cancellare è presente tra quelle
+        // dell'utente
+        boolean appartieneAllUtente = prenotazioniUtente.stream()
+                .anyMatch(p -> p.getId().equals(id));
+
+        if (appartieneAllUtente) {
+            prenotazioneService.deleteById(id);
+        }
+
+        // Torna alla pagina delle prenotazioni aggiornata
+        return "redirect:/utente/prenotazioni";
     }
 
 }

@@ -22,22 +22,25 @@ public class PrenotazioneService {
     private CorsoRepository corsoRepository;
     private PrenotazioneRepository prenotazioneRepository;
 
-    public PrenotazioneService(CorsoRepository corsoRepository, PrenotazioneRepository prenotazioneRepository, UserRepository userRepository) {
+    public PrenotazioneService(CorsoRepository corsoRepository, PrenotazioneRepository prenotazioneRepository,
+            UserRepository userRepository) {
         this.userRepository = userRepository;
         this.prenotazioneRepository = prenotazioneRepository;
         this.corsoRepository = corsoRepository;
     }
 
     public void prenota(Long userId, Long corsoId) {
-        User user = this.userRepository.findById(userId).orElseThrow(()-> new ResourceNotFoundException("Utente non trovato"));
-        Corso corso = this.corsoRepository.findById(corsoId).orElseThrow(() -> new ResourceNotFoundException("Corso non trovato"));
+        User user = this.userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Utente non trovato"));
+        Corso corso = this.corsoRepository.findById(corsoId)
+                .orElseThrow(() -> new ResourceNotFoundException("Corso non trovato"));
         Long iscritti = this.prenotazioneRepository.countByCorso(corso);
-        if(iscritti >= corso.getCapacita()){
+        if (iscritti >= corso.getCapacita()) {
             throw new RuntimeException("Corso Pieno");
         }
 
-        boolean esistePrenotazione = this.prenotazioneRepository.existsByUserAndCorso(user,corso);
-        if(esistePrenotazione){
+        boolean esistePrenotazione = this.prenotazioneRepository.existsByUserAndCorso(user, corso);
+        if (esistePrenotazione) {
             throw new RuntimeException("Esiste gia prenotazione");
         }
         Prenotazione p = new Prenotazione();
@@ -50,6 +53,10 @@ public class PrenotazioneService {
 
     public List<Prenotazione> findByUser(User user) {
         return prenotazioneRepository.findByUser(user);
+    }
+
+    public void deleteById(Long id) {
+        this.prenotazioneRepository.deleteById(id);
     }
 
 }
