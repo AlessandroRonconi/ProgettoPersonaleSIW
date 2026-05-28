@@ -8,24 +8,31 @@
 
 <body>
 
-<h1>Corsi disponibili</h1>
+    <h1>Corsi disponibili</h1>
 
-<div th:each="c : ${corsi}">
+    <div th:each="c : ${corsi}">
 
-    <h3 th:text="${c.nome}"></h3>
+        <h3 th:text="${c.nome}"></h3>
 
-    <p>
-        Posti rimasti:
-        <span th:text="${c.capacita - c.prenotazioni.size()}"></span>
-    </p>
+        <p>
+            Posti rimasti:
+            <span th:text="${c.capacita - c.prenotazioni.size()}"></span>
+        </p>
 
-    <form th:action="@{'/utente/prenota/' + ${c.id}}" method="post">
-        <button type="submit">Prenota</button>
-    </form>
+        <div th:if="${corsiPrenotatiIds != null && #sets.contains(corsiPrenotatiIds, c.id)}">
+            <button type="button" disabled style="background-color: #ccc; cursor: not-allowed;">Già prenotato</button>
+        </div>
 
-    <hr>
+        <div th:unless="${corsiPrenotatiIds != null && #sets.contains(corsiPrenotatiIds, c.id)}">
+            <form th:action="@{'/utente/prenota/' + ${c.id}}" method="post">
+                <button type="submit">Prenota</button>
+            </form>
+        </div>
 
-</div>
+        <hr>
+
+    </div>
 
 </body>
+
 </html>

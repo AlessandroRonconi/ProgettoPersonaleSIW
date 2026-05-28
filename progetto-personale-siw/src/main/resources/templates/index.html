@@ -11,12 +11,11 @@
                 Non sei loggato
         </span>
         <header>
-		<div th:if="${userDetails}">
-			<!--<span th:text="${userDetails.username}"></span>-->
-			<form th:action="@{/logout}" method="POST" style="display:inline;">
-				<button type="submit">Logout</button>
-			</form>
-	</header>
+                <div th:if="${userDetails}">
+                        <form th:action="@{/logout}" method="POST" style="display:inline;">
+                                <button type="submit">Logout</button>
+                        </form>
+        </header>
 </head>
 
 <body>
@@ -45,7 +44,7 @@
                 </div>
         </h2>
 
-        
+
 </body>
 
 </html>

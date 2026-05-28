@@ -1,4 +1,4 @@
-package it.uniroma3.siw.progetto_personale_siw.config;
+package it.uniroma3.siw.progetto_personale_siw.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;

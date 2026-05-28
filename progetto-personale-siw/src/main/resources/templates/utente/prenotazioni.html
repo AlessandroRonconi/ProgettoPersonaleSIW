@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Le mie prenotazioni</title>
+    <link rel="stylesheet" href="/css/stile.css" />
 </head>
 <body>
 
@@ -11,19 +12,17 @@
     <p>Non hai ancora prenotazioni.</p>
 </div>
 
-<table th:if="${!#lists.isEmpty(prenotazioni)}" border="1">
+<table th:if="${!#lists.isEmpty(prenotazioni)}">
     <thead>
     <tr>
         <th>Corso</th>
         <th>Data prenotazione</th>
-        <th>Data lezione</th>
     </tr>
     </thead>
 
     <tbody>
     <tr th:each="p : ${prenotazioni}">
         <td th:text="${p.corso.nome}"></td>
-        <td th:text="${p.dataPrenotazione}"></td>
         <td th:text="${p.dataOra}"></td>
     </tr>
     </tbody>

@@ -10,7 +10,8 @@ import it.uniroma3.siw.progetto_personale_siw.service.AbbonamentoService;
 public class AbbonamentoController {
 
     private AbbonamentoService abbonamentoService;
-    public AbbonamentoController(AbbonamentoService abbonamentoService){
+
+    public AbbonamentoController(AbbonamentoService abbonamentoService) {
         this.abbonamentoService = abbonamentoService;
     }
 
