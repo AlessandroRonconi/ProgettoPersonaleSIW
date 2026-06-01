@@ -32,30 +32,30 @@ insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istr
 insert into corso(id, nome, descrizione, livello, capacita, durata_lezione, istruttore_id) values(nextval('corso_seq'), 'Kickboxing Adulti', 'Corso ad alta intensità che unisce tecniche di calcio e pugno per migliorare forza, agilità e coordinazione.', 'Intermedio/Avanzato', 10, 60, 251);
 
 -- Orari dei corsi
-insert into corso_orari(corso_id, giorno, orario) values (1, 'Lunedi', '09:00-10:00');
-insert into corso_orari(corso_id, giorno, orario) values (1, 'Mercoledi', '09:00-10:00');
-insert into corso_orari(corso_id, giorno, orario) values (1, 'Venerdi', '09:00-10:00');
+insert into corso_orari(corso_id, giorno, orario) values (1, 'Lunedì', '09:00-10:00');
+insert into corso_orari(corso_id, giorno, orario) values (1, 'Mercoledì', '09:00-10:00');
+insert into corso_orari(corso_id, giorno, orario) values (1, 'Venerdì', '09:00-10:00');
 
-insert into corso_orari(corso_id, giorno, orario) values (51, 'Martedi', '18:00-19:15');
-insert into corso_orari(corso_id, giorno, orario) values (51, 'Giovedi', '18:00-19:15');
+insert into corso_orari(corso_id, giorno, orario) values (51, 'Martedì', '18:00-19:15');
+insert into corso_orari(corso_id, giorno, orario) values (51, 'Giovedì', '18:00-19:15');
 
-insert into corso_orari(corso_id, giorno, orario) values (101, 'Lunedi', '18:15-19:00');
-insert into corso_orari(corso_id, giorno, orario) values (101, 'Mercoledi', '18:15-19:00');
+insert into corso_orari(corso_id, giorno, orario) values (101, 'Lunedì', '18:15-19:00');
+insert into corso_orari(corso_id, giorno, orario) values (101, 'Mercoledì', '18:15-19:00');
 insert into corso_orari(corso_id, giorno, orario) values (101, 'Sabato', '11:00-11:45');
 
-insert into corso_orari(corso_id, giorno, orario) values (151, 'Martedi', '10:00-10:55');
-insert into corso_orari(corso_id, giorno, orario) values (151, 'Giovedi', '10:00-10:55');
+insert into corso_orari(corso_id, giorno, orario) values (151, 'Martedì', '10:00-10:55');
+insert into corso_orari(corso_id, giorno, orario) values (151, 'Giovedì', '10:00-10:55');
 
-insert into corso_orari(corso_id, giorno, orario) values (201, 'Lunedi', '20:00-21:30');
-insert into corso_orari(corso_id, giorno, orario) values (201, 'Venerdi', '20:00-21:30');
+insert into corso_orari(corso_id, giorno, orario) values (201, 'Lunedì', '20:00-21:30');
+insert into corso_orari(corso_id, giorno, orario) values (201, 'Venerdì', '20:00-21:30');
 
-insert into corso_orari(corso_id, giorno, orario) values (251, 'Martedi', '19:15-20:15');
-insert into corso_orari(corso_id, giorno, orario) values (251, 'Giovedi', '19:15-20:15');
+insert into corso_orari(corso_id, giorno, orario) values (251, 'Martedì', '19:15-20:15');
+insert into corso_orari(corso_id, giorno, orario) values (251, 'Giovedì', '19:15-20:15');
 insert into corso_orari(corso_id, giorno, orario) values (251, 'Sabato', '19:15-20:15');
 
-insert into corso_orari(corso_id, giorno, orario) values (301, 'Lunedi', '19:00-20:00');
-insert into corso_orari(corso_id, giorno, orario) values (301, 'Mercoledi', '19:00-20:00');
-insert into corso_orari(corso_id, giorno, orario) values (301, 'Venerdi', '19:00-20:00');
+insert into corso_orari(corso_id, giorno, orario) values (301, 'Lunedì', '19:00-20:00');
+insert into corso_orari(corso_id, giorno, orario) values (301, 'Mercoledì', '19:00-20:00');
+insert into corso_orari(corso_id, giorno, orario) values (301, 'Venerdì', '19:00-20:00');
 
 -- Tipi di abbonamenti
 insert into tipo_abbonamento(id, nome, durata_in_mesi, prezzo) values(nextval('tipo_abbonamento_seq'), 'Mensile', 1, 35);

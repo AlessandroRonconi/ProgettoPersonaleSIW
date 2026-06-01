@@ -27,46 +27,46 @@
         <tbody>
             <tr>
                 <td>
-                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Lunedi')}">
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Lunedì')}">
                         <div class="corso">
                             <div class="nome" th:text="${c.nome}"></div>
-                            <div th:text="${c.weekdayOrario.get('Lunedi')}"></div>
+                            <div th:text="${c.weekdayOrario.get('Lunedì')}"></div>
                         </div>
                     </div>
                 </td>
 
                 <td>
-                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Martedi')}">
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Martedì')}">
                         <div class="corso">
                             <div class="nome" th:text="${c.nome}"></div>
-                            <div th:text="${c.weekdayOrario.get('Martedi')}"></div>
+                            <div th:text="${c.weekdayOrario.get('Martedì')}"></div>
                         </div>
                     </div>
                 </td>
 
                 <td>
-                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Mercoledi')}">
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Mercoledì')}">
                         <div class="corso">
                             <div class="nome" th:text="${c.nome}"></div>
-                            <div th:text="${c.weekdayOrario.get('Mercoledi')}"></div>
+                            <div th:text="${c.weekdayOrario.get('Mercoledì')}"></div>
                         </div>
                     </div>
                 </td>
 
                 <td>
-                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Giovedi')}">
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Giovedì')}">
                         <div class="corso">
                             <div class="nome" th:text="${c.nome}"></div>
-                            <div th:text="${c.weekdayOrario.get('Giovedi')}"></div>
+                            <div th:text="${c.weekdayOrario.get('Giovedì')}"></div>
                         </div>
                     </div>
                 </td>
 
                 <td>
-                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Venerdi')}">
+                    <div th:each="c : ${corsi}" th:if="${c.weekdayOrario.containsKey('Venerdì')}">
                         <div class="corso">
                             <div class="nome" th:text="${c.nome}"></div>
-                            <div th:text="${c.weekdayOrario.get('Venerdi')}"></div>
+                            <div th:text="${c.weekdayOrario.get('Venerdì')}"></div>
                         </div>
                     </div>
                 </td>
