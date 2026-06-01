@@ -10,7 +10,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Future;
@@ -50,11 +49,14 @@ public class SchedaAllenamento {
     @ManyToOne // FK id_pt in relazione schedaall, qui schedaall è owner
     private PersonalTrainer pt;
 
-    @ManyToMany // new table, è owner
-    private List<Esercizio> esercizi = new ArrayList<>();
+    /*@ManyToMany // new table, è owner
+    private List<Esercizio> esercizi = new ArrayList<>();*/
 
     @OneToMany(mappedBy = "scheda", cascade = CascadeType.ALL) //se salvo/elimino la scheda si salvano/eliminano i commenti
     private List<CommentoScheda> commenti = new ArrayList<>();
+
+    @OneToMany(mappedBy = "scheda")
+    private List<EsercizioScheda> eserciziScheda = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -112,14 +114,6 @@ public class SchedaAllenamento {
         this.pt = pt;
     }
 
-    public List<Esercizio> getEsercizi() {
-        return esercizi;
-    }
-
-    public void setEsercizi(List<Esercizio> esercizi) {
-        this.esercizi = esercizi;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -143,6 +137,22 @@ public class SchedaAllenamento {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public List<CommentoScheda> getCommenti() {
+        return commenti;
+    }
+
+    public void setCommenti(List<CommentoScheda> commenti) {
+        this.commenti = commenti;
+    }
+
+    public List<EsercizioScheda> getEserciziScheda() {
+        return eserciziScheda;
+    }
+
+    public void setEserciziScheda(List<EsercizioScheda> eserciziScheda) {
+        this.eserciziScheda = eserciziScheda;
     }
 
     // questo qui sotto non l'ho benissimo capito non penso serva?

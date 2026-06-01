@@ -16,6 +16,8 @@ import it.uniroma3.siw.progetto_personale_siw.service.CredentialsService;
 import it.uniroma3.siw.progetto_personale_siw.service.SchedaAllenamentoService;
 
 
+
+
 @Controller
 public class SchedaController {
 
@@ -34,5 +36,8 @@ public class SchedaController {
         model.addAttribute("schede", scehdeAllenamento);
         return "utente/mie-schede";
     }
+    
+    
+    
     
 }

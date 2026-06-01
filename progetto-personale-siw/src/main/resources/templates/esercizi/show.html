@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Esercizi</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<h1>Elenco esercizi</h1>
+
+<div th:if="${#lists.isEmpty(esercizi)}">
+    <p>Nessun esercizio presente</p>
+</div>
+
+<table th:if="${!#lists.isEmpty(esercizi)}" border="1">
+
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Descrizione</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="e : ${esercizi}">
+            <td th:text="${e.nome}"></td>
+            <td th:text="${e.descrizione}"></td>
+        </tr>
+    </tbody>
+
+</table>
+
+<a th:href="@{'/esercizi/new'}"> Aggiungi esercizio</a>
+<a th:href="@{'/'}"> Torna alla home</a>
+
+</body>
+</html>

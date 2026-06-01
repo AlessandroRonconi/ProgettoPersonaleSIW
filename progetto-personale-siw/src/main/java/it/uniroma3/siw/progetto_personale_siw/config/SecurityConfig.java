@@ -49,8 +49,8 @@ public class SecurityConfig {
 
         httpSecuity.authorizeHttpRequests(authorize -> {
 
-            // authorize.requestMatchers().hasAuthority(); ADMIN
-            // authorize.requestMatchers().hasAuthority(); ADMIN
+            authorize.requestMatchers(HttpMethod.GET, "/esercizi", "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.POST, "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE); 
             authorize.requestMatchers(HttpMethod.GET, "/utente/profilo","/utente/mie-schede","/utente/prenotazioni").hasAnyAuthority(Credentials.USER_ROLE,Credentials.ADMIN_ROLE);
             authorize.requestMatchers(HttpMethod.POST,"/utente/prenotazioni/cancella/*").hasAnyAuthority(Credentials.USER_ROLE,Credentials.ADMIN_ROLE);   
             authorize.requestMatchers(HttpMethod.GET,"/utente/prenota-corsi").hasAuthority(Credentials.USER_ROLE);
