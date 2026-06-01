@@ -49,8 +49,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String Registrazione(@Valid @ModelAttribute Credentials credentials, BindingResult bindingResult,
-            Model model) {
+    public String Registrazione(@Valid @ModelAttribute Credentials credentials, BindingResult bindingResult,Model model) {
         if (bindingResult.hasErrors()) { // errori di validazione
             return "register";
         }

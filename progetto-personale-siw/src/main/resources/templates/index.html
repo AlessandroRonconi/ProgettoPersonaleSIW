@@ -48,6 +48,12 @@
                 </div>
         </h2>
 
+        <h2>
+                <div sec:authorize="hasAnyAuthority('ADMIN')">
+                        <a th:href="@{'/esercizi'}">Esercizi</a>
+                </div>
+        </h2>
+
 
 </body>
 

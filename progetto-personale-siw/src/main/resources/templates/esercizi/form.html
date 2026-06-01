@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nuovo esercizio</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<h1>Nuovo esercizio</h1>
+
+<span th:if="${errorMessage}" th:text="${error}" style="color:red"></span>
+
+<form th:action="@{/esercizi/new}" method="POST" th:object="${esercizio}">
+
+    <div>
+        Nome: <span><input type="text" th:field="*{nome}"></span>
+        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" style="color:red"></span>
+    </div>
+
+    <br>
+
+    <div>
+        Descrizione:<span><input type="text" th:field="*{descrizione}"></span>
+        <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}" style="color:red"></span>
+    </div>
+
+    <br>
+
+    <button type="submit"> Salva </button>
+    
+
+</form>
+
+</body>
+</html>

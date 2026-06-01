@@ -14,7 +14,7 @@ public class AbbonamentoController {
     public AbbonamentoController(AbbonamentoService abbonamentoService) {
         this.abbonamentoService = abbonamentoService;
     }
-
+    //non penso serva piu
     @GetMapping("/abbonamenti")
     public String mostraAbbonamenti(Model model) {
         model.addAttribute("abbonamenti", this.abbonamentoService.findAll());

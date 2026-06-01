@@ -8,10 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Esercizio {
@@ -27,21 +25,11 @@ public class Esercizio {
     @Column(length = 500)
     private String descrizione;
 
-    @NotBlank(message = "Le serie sono obbligatorie")
-    @Positive(message = "Le serie devono essere un numero positivo")
-    @Column(nullable = false)
-    private Integer serie;
+    //@ManyToMany(mappedBy = "esercizi")
+    //private List<SchedaAllenamento> schede = new ArrayList<>();
 
-    @NotBlank(message = "Le ripetizioni sono obbligatorie")
-    @Positive(message = "Le ripetizioni devono essere un numero positivo")
-    @Column(nullable = false)
-    private Integer ripetizioni;
-
-    @Min(value = 0, message = "Il recupero non può essere negativo")
-    private Integer recuperoSec;
-
-    @ManyToMany(mappedBy = "esercizi")
-    private List<SchedaAllenamento> schede = new ArrayList<>();
+    @OneToMany(mappedBy = "esercizio")
+    private List<EsercizioScheda> eserciziScheda = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -67,38 +55,6 @@ public class Esercizio {
         this.descrizione = descrizione;
     }
 
-    public Integer getSerie() {
-        return serie;
-    }
-
-    public void setSerie(Integer serie) {
-        this.serie = serie;
-    }
-
-    public Integer getRipetizioni() {
-        return ripetizioni;
-    }
-
-    public void setRipetizioni(Integer ripetizioni) {
-        this.ripetizioni = ripetizioni;
-    }
-
-    public Integer getRecuperoSec() {
-        return recuperoSec;
-    }
-
-    public void setRecuperoSec(Integer recuperoSec) {
-        this.recuperoSec = recuperoSec;
-    }
-
-    public List<SchedaAllenamento> getSchede() {
-        return schede;
-    }
-
-    public void setSchede(List<SchedaAllenamento> schede) {
-        this.schede = schede;
-    }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -122,5 +78,13 @@ public class Esercizio {
         } else if (!id.equals(other.id))
             return false;
         return true;
+    }
+
+    public List<EsercizioScheda> getEserciziScheda() {
+        return eserciziScheda;
+    }
+
+    public void setEserciziScheda(List<EsercizioScheda> eserciziScheda) {
+        this.eserciziScheda = eserciziScheda;
     }
 }
