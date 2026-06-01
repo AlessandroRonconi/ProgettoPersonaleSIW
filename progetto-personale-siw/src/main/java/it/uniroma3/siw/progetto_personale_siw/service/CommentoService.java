@@ -5,10 +5,10 @@ import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.progetto_personale_siw.exception.ResourceNotFoundException;
 import it.uniroma3.siw.progetto_personale_siw.model.Commento;
 import it.uniroma3.siw.progetto_personale_siw.model.Corso;
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
-import it.uniroma3.siw.progetto_personale_siw.model.ResourceNotFoundException;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.repository.CommentoRepository;
 import it.uniroma3.siw.progetto_personale_siw.repository.CorsoRepository;
