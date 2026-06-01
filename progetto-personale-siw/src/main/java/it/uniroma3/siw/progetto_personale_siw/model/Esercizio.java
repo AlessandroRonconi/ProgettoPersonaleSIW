@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 @Entity
@@ -27,12 +28,12 @@ public class Esercizio {
     @Column(length = 500)
     private String descrizione;
 
-    @NotBlank(message = "Le serie sono obbligatorie")
+    @NotNull(message = "Le serie sono obbligatorie")
     @Positive(message = "Le serie devono essere un numero positivo")
     @Column(nullable = false)
     private Integer serie;
 
-    @NotBlank(message = "Le ripetizioni sono obbligatorie")
+    @NotNull(message = "Le ripetizioni sono obbligatorie")
     @Positive(message = "Le ripetizioni devono essere un numero positivo")
     @Column(nullable = false)
     private Integer ripetizioni;

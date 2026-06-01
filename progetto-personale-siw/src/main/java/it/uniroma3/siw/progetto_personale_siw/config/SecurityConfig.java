@@ -49,12 +49,12 @@ public class SecurityConfig {
 
         httpSecuity.authorizeHttpRequests(authorize -> {
 
-            // authorize.requestMatchers().hasAuthority();
-            // authorize.requestMatchers().hasAuthority();
-            authorize.requestMatchers(HttpMethod.GET, "/utente/profilo").hasAnyAuthority(Credentials.USER_ROLE,
-                    Credentials.ADMIN_ROLE);
-            // authorize.requestMatchers().hasAnyAuthority();
-
+            // authorize.requestMatchers().hasAuthority(); ADMIN
+            // authorize.requestMatchers().hasAuthority(); ADMIN
+            authorize.requestMatchers(HttpMethod.GET, "/utente/profilo","/utente/mie-schede","/utente/prenotazioni").hasAnyAuthority(Credentials.USER_ROLE,Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.POST,"/utente/prenotazioni/cancella/*").hasAnyAuthority(Credentials.USER_ROLE,Credentials.ADMIN_ROLE);   
+            authorize.requestMatchers(HttpMethod.GET,"/utente/prenota-corsi").hasAuthority(Credentials.USER_ROLE);
+            authorize.requestMatchers(HttpMethod.POST,"/utente/prenota/*").hasAuthority(Credentials.USER_ROLE);
             authorize.requestMatchers(HttpMethod.GET,
                     "/", "/index", "/login", "/register",
                     "/css/**", "/images/**", "/favicon.ico", "/corsi", "/tipi_abbonamenti", "/corsi/*/commenti",

@@ -34,6 +34,7 @@ public class PrenotazioneService {
                 .orElseThrow(() -> new ResourceNotFoundException("Utente non trovato"));
         Corso corso = this.corsoRepository.findById(corsoId)
                 .orElseThrow(() -> new ResourceNotFoundException("Corso non trovato"));
+                
         Long iscritti = this.prenotazioneRepository.countByCorso(corso);
         if (iscritti >= corso.getCapacita()) {
             throw new RuntimeException("Corso Pieno");

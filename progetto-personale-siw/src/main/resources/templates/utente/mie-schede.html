@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Le mie schede</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<h1>Schede di allenamento</h1>
+
+<div th:if="${#lists.isEmpty(schede)}">
+    <p>Non hai nessuna scheda</p>
+</div>
+
+<div th:each="scheda : ${schede}">
+
+    <hr>
+
+    <!-- ===================== -->
+    <!-- INFORMAZIONI SCHEDA   -->
+    <!-- ===================== -->
+
+    <h2 th:text="${scheda.obiettivo}">Obiettivo</h2>
+
+    <p>
+        <strong>Data inizio:</strong>
+        <span th:text="${scheda.dataInizio}"></span>
+    </p>
+
+    <p>
+        <strong>Data fine:</strong>
+        <span th:text="${scheda.dataFine}"></span>
+    </p>
+
+    <p>
+        <strong>Note:</strong>
+        <span th:text="${scheda.note}"></span>
+    </p>
+
+    <!-- ===================== -->
+    <!-- ESERCIZI              -->
+    <!-- ===================== -->
+
+    <h3>Esercizi</h3>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Serie</th>
+            <th>Ripetizioni</th>
+            <th>Recupero (sec)</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="esercizio : ${scheda.esercizi}">
+            <td th:text="${esercizio.nome}"></td>
+            <td th:text="${esercizio.serie}"></td>
+            <td th:text="${esercizio.ripetizioni}"></td>
+            <td th:text="${esercizio.recuperoSec}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- ===================== -->
+    <!-- COMMENTI              -->
+    <!-- ===================== -->
+
+    <h3>Commenti</h3>
+
+    <div th:if="${#lists.isEmpty(scheda.commenti)}">
+        <p>Nessun commento presente</p>
+    </div>
+
+    <div th:each="commento : ${scheda.commenti}">
+        <hr>
+
+        <p>
+            <strong th:text="${commento.autore}">Autore</strong>
+        </p>
+
+        <p th:text="${commento.testo}"></p>
+
+        <small th:text="${commento.dataOra}"></small>
+    </div>
+
+    <!-- ===================== -->
+    <!-- FORM COMMENTO         -->
+    <!-- ===================== -->
+
+    <h4>Aggiungi commento</h4>
+
+    <form th:action="@{/schede/{id}/commenti/new(id=${scheda.id})}"
+          method="post">
+
+        <textarea name="testo" required></textarea>
+        <br>
+
+        <button type="submit">Invia</button>
+    </form>
+
+</div>
+
+</body>
+</html>
