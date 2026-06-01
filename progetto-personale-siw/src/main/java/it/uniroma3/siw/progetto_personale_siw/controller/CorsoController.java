@@ -1,6 +1,8 @@
 package it.uniroma3.siw.progetto_personale_siw.controller;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Optional;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,10 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateCorsoException;
 import it.uniroma3.siw.progetto_personale_siw.model.Commento;
+import it.uniroma3.siw.progetto_personale_siw.model.Corso;
+import it.uniroma3.siw.progetto_personale_siw.model.Istruttore;
 import it.uniroma3.siw.progetto_personale_siw.service.CommentoService;
 import it.uniroma3.siw.progetto_personale_siw.service.CorsoService;
+import it.uniroma3.siw.progetto_personale_siw.service.IstruttoreService;
 import jakarta.validation.Valid;
 
 @Controller
@@ -22,10 +29,13 @@ public class CorsoController {
 
     private CorsoService corsoService;
     private CommentoService commentoService;
+    private IstruttoreService istruttoreService;
 
-    public CorsoController(CorsoService corsoService, CommentoService commentoService) {
+    public CorsoController(CorsoService corsoService, CommentoService commentoService,
+            IstruttoreService istruttoreService) {
         this.corsoService = corsoService;
         this.commentoService = commentoService;
+        this.istruttoreService = istruttoreService;
     }
 
     @GetMapping("/corsi")
@@ -96,6 +106,89 @@ public class CorsoController {
         commentoOld.setDataOra(LocalDateTime.now());
         commentoService.save(commentoOld);
         return "redirect:/corsi/" + corsoId + "/commenti";
+    }
+
+    @GetMapping("/admin/corsi/new")
+    public String showForm(Model model) {
+        model.addAttribute("corso", new Corso());
+        model.addAttribute("istruttori", istruttoreService.findAll());
+        return "admin/corsi/form";
+    }
+
+    @PostMapping("/admin/corsi")
+    public String salvaCorso(@Valid @ModelAttribute("corso") Corso corso,
+            BindingResult bindingResult, Model model, @RequestParam(required = false) Long istruttoreId) {
+        if (bindingResult.hasErrors()) {
+            return "admin/corsi/form";
+        }
+
+        // Associa l'istruttore selezionato
+        if (istruttoreId != null && istruttoreId > 0) {
+            Optional<Istruttore> istruttore = istruttoreService.findById(istruttoreId);
+            istruttore.ifPresent(corso::setIstruttore);
+        }
+
+        // Rimuovi eventuali orari vuoti
+        corso.getWeekdayOrario().values().removeIf(String::isBlank);
+
+        try {
+            corsoService.save(corso);
+            return "redirect:/corsi";
+        } catch (DuplicateCorsoException e) {
+            model.addAttribute("istruttori", istruttoreService.findAll());
+            bindingResult.reject("corso.duplicate", "Esiste già un corso con questo nome");
+            return "admin/corsi/form";
+        }
+    }
+
+    @GetMapping("/admin/corsi/{id}/edit")
+    public String editForm(@PathVariable Long id, Model model) {
+        Corso corso = this.corsoService.findById(id);
+        if (corso.getWeekdayOrario() == null) {
+            corso.setWeekdayOrario(new HashMap<>());
+        }
+        model.addAttribute("corso", corso);
+        model.addAttribute("istruttori", istruttoreService.findAll());
+        return "admin/corsi/form";
+    }
+
+    @PostMapping("/admin/corsi/{id}/edit")
+    public String salvaEdit(@PathVariable Long id,
+            @Valid @ModelAttribute("corso") Corso corsoForm,
+            BindingResult bindingResult,
+            Model model,
+            @RequestParam(required = false) Long istruttoreId) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("istruttori", istruttoreService.findAll());
+            return "admin/corsi/form";
+        }
+
+        Corso corsoEsistente = corsoService.findById(id);
+        corsoEsistente.setNome(corsoForm.getNome());
+        corsoEsistente.setDescrizione(corsoForm.getDescrizione());
+        corsoEsistente.setDurataLezione(corsoForm.getDurataLezione());
+        corsoEsistente.setLivello(corsoForm.getLivello());
+        corsoEsistente.setCapacita(corsoForm.getCapacita());
+
+        // Aggiorna gli orari
+        corsoEsistente.setWeekdayOrario(corsoForm.getWeekdayOrario());
+        corsoEsistente.getWeekdayOrario().values().removeIf(String::isBlank);
+
+        // Aggiorna l'istruttore
+        if (istruttoreId != null && istruttoreId > 0) {
+            istruttoreService.findById(istruttoreId).ifPresent(corsoEsistente::setIstruttore);
+        } else {
+            corsoEsistente.setIstruttore(null);
+        }
+
+        corsoService.save(corsoEsistente);
+        return "redirect:/corsi";
+    }
+
+    @PostMapping("/admin/corsi/{id}/delete")
+    public String deleteCorso(@PathVariable Long id) {
+        corsoService.deleteById(id);
+        return "redirect:/corsi";
     }
 
 }

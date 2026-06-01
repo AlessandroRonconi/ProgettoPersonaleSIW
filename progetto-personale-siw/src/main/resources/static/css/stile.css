@@ -58,9 +58,15 @@ td {
     vertical-align: top;
 }
 
-/* Stile base per tutti gli errori */
+/* Stile base per gli errori inline accanto ai campi dei form */
 .error-message {
     color: red;
+}
+
+/* Stile base per messaggi generali di errore */
+.error-banner {
+    color: red;
+    margin-bottom: 10px;
 }
 
 /* Stile base per tutti i bottoni del sito per renderli omogenei */

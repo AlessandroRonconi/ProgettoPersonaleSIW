@@ -27,18 +27,6 @@ public class Prenotazione {
     @ManyToOne // FK id_pt in relazione prenotazione, qui prenotazione è owner
     private Corso corso;
 
-    /*
-     * @Enumerated(EnumType.STRING) dice è utile se mi seerve uno storico, ho
-     * chiesto a chat
-     * ma non penso a noi serva una cosa del genere?
-     * no non serve
-     * 
-     * @Column(nullable = false)
-     * private StatoPrenotazione stato = StatoPrenotazione.CONFERMATA;
-     * 
-     * ma no dai non serve neanche lo stato
-     */
-
     public Long getId() {
         return id;
     }

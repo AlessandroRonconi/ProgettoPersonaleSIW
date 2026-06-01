@@ -1,6 +1,7 @@
 package it.uniroma3.siw.progetto_personale_siw.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,10 @@ public class IstruttoreService {
 
     public List<Istruttore> findAll() {
         return (List<Istruttore>) this.istruttoreRepository.findAll();
+    }
+
+    public Optional<Istruttore> findById(Long id) {
+        return this.istruttoreRepository.findById(id);
     }
 
 }

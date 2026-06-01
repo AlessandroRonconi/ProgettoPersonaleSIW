@@ -1,63 +1,55 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Registrazione</title>
     <link rel="stylesheet" href="/css/stile.css" />
 </head>
+
 <body>
 
-<h1>Registrazione</h1>
+    <h1>Registrazione</h1>
 
-    <div th:if="${error}" style="color:red; margin-bottom: 10px;" th:text="${error}"></div> 
+    <div th:if="${error}" th:text="${error}" class="error-banner"></div>
 
-<form th:action="@{/register}" method="POST" th:object="${credentials}">
-    
-    <div>
-        Username: <input type="text" th:field="*{username}" required />
-        <span th:if="${#fields.hasErrors('username')}" 
-                  th:errors="*{username}" 
-                  style="color:red"></span>
-    </div>
-    
-    <div>
-        Password: <input type="password" th:field="*{password}" required />
-        <span th:if="${#fields.hasErrors('password')}" 
-                  th:errors="*{password}" 
-                  style="color:red"></span>
-    </div>
-    
-    <div>
-        Nome: <input type="text" th:field="*{user.nome}" required />
-        <span th:if="${#fields.hasErrors('user.nome')}" 
-                  th:errors="*{user.nome}" 
-                  style="color:red"></span>
-    </div>
+    <form th:action="@{/register}" method="POST" th:object="${credentials}">
 
-    <div>
-        Cognome: <input type="text" th:field="*{user.cognome}" required />
-        <span th:if="${#fields.hasErrors('user.cognome')}" 
-                  th:errors="*{user.cognome}" 
-                  style="color:red"></span>
-    </div>
+        <div>
+            Username: <input type="text" th:field="*{username}" required />
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></span>
+        </div>
 
-    <div>
-        Data di nascita:<input type="date" th:field="*{user.dataDiNascita}" required />
+        <div>
+            Password: <input type="password" th:field="*{password}" required />
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></span>
+        </div>
 
-        <span th:if="${#fields.hasErrors('user.dataDiNascita')}"
-            th:errors="*{user.dataDiNascita}"
-            style="color:red"></span>
-    </div>
+        <div>
+            Nome: <input type="text" th:field="*{user.nome}" required />
+            <span th:if="${#fields.hasErrors('user.nome')}" th:errors="*{user.nome}" class="error-message"></span>
+        </div>
 
-    <div>
-        Email: <input type="email" th:field="*{user.email}" required />
-        <span th:if="${#fields.hasErrors('user.email')}" 
-                  th:errors="*{user.email}" 
-                  style="color:red"></span>
-    </div>
+        <div>
+            Cognome: <input type="text" th:field="*{user.cognome}" required />
+            <span th:if="${#fields.hasErrors('user.cognome')}" th:errors="*{user.cognome}" class="error-message"></span>
+        </div>
 
-    <button type="submit">Registrati</button>
+        <div>
+            Data di nascita:<input type="date" th:field="*{user.dataDiNascita}" required />
 
-</form>
+            <span th:if="${#fields.hasErrors('user.dataDiNascita')}" th:errors="*{user.dataDiNascita}"
+                class="error-message"></span>
+        </div>
+
+        <div>
+            Email: <input type="email" th:field="*{user.email}" required />
+            <span th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}" class="error-message"></span>
+        </div>
+
+        <button type="submit">Registrati</button>
+
+    </form>
 
 </body>
+
 </html>

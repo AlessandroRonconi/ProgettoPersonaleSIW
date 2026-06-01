@@ -33,6 +33,12 @@
         </p>
 
         <a th:href="@{'/corsi/' + ${corso.id} + '/commenti'}">Mostra recensioni degli utenti</a>
+        <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/admin/corsi/' + ${corso.id} + '/edit'}">Modifica</a>
+        <form th:action="@{/admin/corsi/{id}/delete(id=${corso.id})}" method="post"
+            onsubmit="return confirm('Vuoi davvero eliminare questo corso? Verranno eliminate anche tutte le prenotazioni associate.')">
+
+            <button type="submit">Elimina</button>
+        </form>
 
         <hr>
 
@@ -40,6 +46,12 @@
 
     <h2>
         <a href="/corsi/calendario">Calendario settimanale dei corsi</a>
+    </h2>
+
+    <h2>
+        <div sec:authorize="hasAnyAuthority('ADMIN')">
+            <a th:href="@{'/admin/corsi/new'}">Aggiungi un nuovo corso</a>
+        </div>
     </h2>
 
 </body>

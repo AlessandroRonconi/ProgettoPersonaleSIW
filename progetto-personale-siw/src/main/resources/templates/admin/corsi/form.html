@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Inserimento Corso</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+
+<body>
+    <h1>Aggiungi un corso</h1>
+    <form th:action="${corso.id != null} ? @{'/admin/corsi/' + ${corso.id} + '/edit'} : @{'/admin/corsi'}" method="POST"
+        th:object="${corso}">
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+        </div>
+        <div>
+            Nome: <span><input type="text" th:field="*{nome}" /></span>
+            <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="error-message"></span>
+        </div>
+        Durata lezione: <span><input type="text" th:field="*{durataLezione}" /></span>
+        <span th:if="${#fields.hasErrors('durataLezione')}" th:errors="*{durataLezione}" class="error-message"></span>
+        <div>
+            Livello: <span><input type="text" th:field="*{livello}" /></span>
+            <span th:if="${#fields.hasErrors('livello')}" th:errors="*{livello}" class="error-message"></span>
+        </div>
+        <div>
+            Capacità: <span><input type="text" th:field="*{capacita}" /></span>
+            <span th:if="${#fields.hasErrors('capacita')}" th:errors="*{capacita}" class="error-message"></span>
+        </div>
+        <div>
+            Descrizione: <span><input type="text" th:field="*{descrizione}" /></span>
+            <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}" class="error-message"></span>
+        </div>
+        <div>
+            Istruttore:
+            <select name="istruttoreId">
+                <option value="0">-- Nessun istruttore --</option>
+                <option th:each="istruttore : ${istruttori}" th:value="${istruttore.id}"
+                    th:text="${istruttore.nome + ' ' + istruttore.cognome}"
+                    th:selected="${corso.istruttore != null and corso.istruttore.id == istruttore.id}">
+                </option>
+            </select>
+        </div>
+        <div>
+            Orari:
+            <div th:each="giorno : ${ {'Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'} }">
+                <label th:text="${giorno}"></label>
+                <input type="text" th:name="'weekdayOrario[' + ${giorno} + ']'"
+                    th:value="*{weekdayOrario[__${giorno}__]}"
+                    placeholder="es. 09:00-11:00 (lascia vuoto se non disponibile)" />
+            </div>
+        </div>
+        <div>
+            <span><button type="submit">Salva</button></span>
+        </div>
+    </form>
+</body>
+
+</html>

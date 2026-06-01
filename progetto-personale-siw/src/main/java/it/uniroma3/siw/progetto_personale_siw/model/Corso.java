@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -60,7 +61,7 @@ public class Corso {
     @OneToMany(mappedBy = "corso")
     private List<Commento> commenti;
 
-    @OneToMany(mappedBy = "corso")
+    @OneToMany(mappedBy = "corso", cascade=CascadeType.REMOVE)
     private List<Prenotazione> prenotazioni;
 
     public Long getId() {
