@@ -58,6 +58,11 @@ td {
     vertical-align: top;
 }
 
+/* Stile base per tutti gli errori */
+.error-message {
+    color: red;
+}
+
 /* Stile base per tutti i bottoni del sito per renderli omogenei */
 button {
     font-family: Arial, sans-serif;

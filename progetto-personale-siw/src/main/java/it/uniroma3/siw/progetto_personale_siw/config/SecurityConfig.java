@@ -48,13 +48,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecuity) throws Exception {
 
         httpSecuity.authorizeHttpRequests(authorize -> {
-
-            authorize.requestMatchers(HttpMethod.GET, "/esercizi", "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE);
-            authorize.requestMatchers(HttpMethod.POST, "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE); 
-            authorize.requestMatchers(HttpMethod.GET, "/utente/profilo","/utente/mie-schede","/utente/prenotazioni").hasAnyAuthority(Credentials.USER_ROLE,Credentials.ADMIN_ROLE);
-            authorize.requestMatchers(HttpMethod.POST,"/utente/prenotazioni/cancella/*").hasAnyAuthority(Credentials.USER_ROLE,Credentials.ADMIN_ROLE);   
-            authorize.requestMatchers(HttpMethod.GET,"/utente/prenota-corsi").hasAuthority(Credentials.USER_ROLE);
-            authorize.requestMatchers(HttpMethod.POST,"/utente/prenota/*").hasAuthority(Credentials.USER_ROLE);
+            // autorizzazioni generali
             authorize.requestMatchers(HttpMethod.GET,
                     "/", "/index", "/login", "/register",
                     "/css/**", "/images/**", "/favicon.ico", "/corsi", "/tipi_abbonamenti", "/corsi/*/commenti",
@@ -62,12 +56,19 @@ public class SecurityConfig {
                     .permitAll();
             authorize.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll();
 
-            // authorize.requestMatchers(HttpMethod.GET,
-            // "/admin").hasAnyAuthority(ADMIN_ROLE);
-            // authorize.requestMatchers(HttpMethod.POST,
-            // "/admin").hasAnyAuthority(ADMIN_ROLE);
+            // autorizzazioni per utenti registrati
+            authorize.requestMatchers(HttpMethod.GET, "/utente/profilo", "/utente/mie-schede", "/utente/prenotazioni")
+                    .authenticated(); // <--- autorizzato sia per user che per admin
+            authorize.requestMatchers(HttpMethod.POST, "/utente/prenotazioni/cancella/*").authenticated();
+            authorize.requestMatchers(HttpMethod.GET, "/utente/prenota-corsi").hasAuthority(Credentials.USER_ROLE);
+            authorize.requestMatchers(HttpMethod.POST, "/utente/prenota/*").hasAuthority(Credentials.USER_ROLE);
 
-            authorize.anyRequest().authenticated();
+            // autorizzazioni per admin
+            authorize.requestMatchers(HttpMethod.GET, "/admin").hasAuthority(Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.POST, "/admin").hasAuthority(Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.GET, "/esercizi", "/esercizi/new")
+                    .hasAuthority(Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.POST, "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE);
         });
 
         httpSecuity.formLogin(form -> {
