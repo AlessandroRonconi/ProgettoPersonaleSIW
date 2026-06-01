@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateCredentialsException;
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
-import it.uniroma3.siw.progetto_personale_siw.model.DuplicateCredentialsException;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.service.CredentialsService;
 import jakarta.servlet.http.HttpServletRequest;

@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import it.uniroma3.siw.progetto_personale_siw.model.ResourceNotFoundException;
-
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

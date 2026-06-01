@@ -4,9 +4,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateCredentialsException;
+import it.uniroma3.siw.progetto_personale_siw.exception.ResourceNotFoundException;
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
-import it.uniroma3.siw.progetto_personale_siw.model.DuplicateCredentialsException;
-import it.uniroma3.siw.progetto_personale_siw.model.ResourceNotFoundException;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.repository.CredentialsRepository;
 import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
