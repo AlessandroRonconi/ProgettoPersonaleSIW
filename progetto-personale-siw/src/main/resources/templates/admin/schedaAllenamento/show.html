@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dettaglio Scheda Allenamento</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<h1>Scheda Allenamento</h1>
+
+<div>
+    <p>Utente:<span th:text="${scheda.user.nome + ' ' + scheda.user.cognome}"></span></p>
+    <p>Personal Trainer:
+        <span th:text="${scheda.pt != null ? scheda.pt.nome + ' ' + scheda.pt.cognome : 'Nessuno'}"></span>
+    </p>
+    <p>Obiettivo:<span th:text="${scheda.obiettivo}"></span></p>
+    <p>Data Inizio:<span th:text="${scheda.dataInizio}"></span></p>
+    <p>Data Fine:<span th:text="${scheda.dataFine}"></span></p>
+    <p>Note:<span th:text="${scheda.note != null ? scheda.note : '-'}"></span></p>
+</div>
+<a th:href="@{'/admin/schede/' + ${scheda.id} + '/edit'}">Modifica scheda</a>
+<h2>Esercizi</h2>
+<div th:if="${#lists.isEmpty(scheda.eserciziScheda)}">
+    <p>Nessun esercizio</p>
+</div>
+<table border="1" th:if="${!#lists.isEmpty(scheda.eserciziScheda)}">
+    <thead>
+        <tr>
+            <th>Esercizio</th>
+            <th>Serie</th>
+            <th>Ripetizioni</th>
+            <th>Carico(kg)</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="esScheda : ${scheda.eserciziScheda}">
+            <td th:text="${esScheda.esercizio.nome}"></td>
+            <td th:text="${esScheda.serie}"></td>
+            <td th:text="${esScheda.ripetizioni}"></td>
+            <td th:text="${esScheda.carico}"></td>
+            <td>
+                <a th:href="@{'/admin/schede/' + ${scheda.id} + '/esercizi/' + ${esScheda.id} + '/remove'}">Rimuovi</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<a th:href="@{'/admin/schede/' + ${scheda.id} + '/esercizi/new'}">Aggiungi esercizi</a>
+
+<h2>Commenti</h2>
+<div th:if="${#lists.isEmpty(scheda.commenti)}">
+    <p>Nessun commento.</p>
+</div>
+<div th:if="${!#lists.isEmpty(scheda.commenti)}">
+    <div th:each="commento : ${scheda.commenti}" style="border:1px solid #ccc; margin:10px; padding:10px;">
+        <!--<p>Utente:<span th:text="${commento.user.nome + ' ' + commento.user.cognome}"></span></p>-->
+        <p>Commento:<span th:text="${commento.testo}"></span></p>
+        <p>scritto da:<span th:text="${commento.user.nome + ' ' + commento.user.cognome}"></span></p>
+    </div>
+</div>
+<a th:href="@{'/admin/schede/' + ${scheda.id} + '/commenti/new'}">Aggiungi commento</a>
+
+<br>
+<a th:href="@{/admin/schede}">Torna alla lista</a>
+
+</body>
+</html>

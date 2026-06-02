@@ -1,9 +1,7 @@
 package it.uniroma3.siw.progetto_personale_siw.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +13,7 @@ import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.repository.PersonalTrainerRepository;
 import it.uniroma3.siw.progetto_personale_siw.repository.SchedaAllenamentoRepository;
 import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
+import jakarta.validation.Valid;
 
 @Service
 @Transactional
@@ -40,8 +39,7 @@ public class SchedaAllenamentoService {
             PersonalTrainer pt = personalTrainerRepository.findById(ptId).orElseThrow(() -> new ResourceNotFoundException("PT non trovato"));
             scheda.setPt(pt);
         }
-        boolean exists = schedaAllenamentoRepository.existsByUserAndPtAndDataInizioAndDataFineAndObiettivo(user, scheda.getPt(), scheda.getDataInizio(), scheda.getDataFine(), scheda.getObiettivo());
-
+        boolean exists = schedaAllenamentoRepository.existsByUserAndDataInizioAndDataFine(user, scheda.getDataInizio(), scheda.getDataFine());
         if (exists) {
             throw new DuplicateSchedaAllenamentoException("Esiste già una scheda con gli stessi dati");
         }
@@ -50,6 +48,36 @@ public class SchedaAllenamentoService {
     @Transactional(readOnly = true)
     public List<SchedaAllenamento> findAll() {
         return (List<SchedaAllenamento>) this.schedaAllenamentoRepository.findAll();
+    }
+
+    public SchedaAllenamento findById(Long id) {
+        return this.schedaAllenamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Scheda non trovata"));
+    }
+
+    public void updadeScheda(Long idSchedaOld, SchedaAllenamento schedaNuova, Long ptId, Long userId) {
+         System.out.println("=== SERVICE updateScheda ===");
+    System.out.println("id da aggiornare: " + idSchedaOld);
+        User user = this.userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Utente non trovato"));
+        
+        SchedaAllenamento schedaOld = this.schedaAllenamentoRepository.findById(idSchedaOld).orElseThrow(() -> new ResourceNotFoundException("Scheda non trovata"));
+        //posso aggiornare la scheda senza cambiare le date
+        if (schedaAllenamentoRepository.existsByUserAndDataInizioAndDataFineAndIdNot(
+            user, schedaNuova.getDataInizio(), schedaNuova.getDataFine(), idSchedaOld)) {
+                throw new DuplicateSchedaAllenamentoException("Esiste già una scheda con gli stessi dati");
+        }
+        //altrimenti aggiorna
+        schedaOld.setObiettivo(schedaNuova.getObiettivo());
+        schedaOld.setDataInizio(schedaNuova.getDataInizio());
+        schedaOld.setDataFine(schedaNuova.getDataFine());
+        schedaOld.setNote(schedaNuova.getNote());
+        if (ptId != null) {
+            PersonalTrainer pt = personalTrainerRepository.findById(ptId).orElseThrow(() -> new ResourceNotFoundException("PT non trovato"));
+            schedaOld.setPt(pt);
+        } else {
+            schedaOld.setPt(null);
+        }
+        this.schedaAllenamentoRepository.save(schedaOld);
+
     }
 
 }

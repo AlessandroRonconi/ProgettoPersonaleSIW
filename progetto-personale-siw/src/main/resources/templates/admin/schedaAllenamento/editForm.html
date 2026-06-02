@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
     <title>Crea Scheda Allenamento</title>
     <link rel="stylesheet" href="/css/stile.css" />
 </head>
 <body>
 
-<h1>Crea nuova scheda</h1>
+<h1>Modifica</h1>
 
 <div th:if="${error}" class="alert alert-danger" style="color:red">
     <p th:text="${error}"></p>
 </div>
+<!-- CORREGGI QUESTO th:action -->
+<form th:action="@{/admin/schede/{id}/edit(id=${scheda.id})}" th:object="${scheda}" method="post">
 
-<form th:action="@{/admin/schede/new}" th:object="${scheda}" method="post">
-    
-    <!-- IMPORTANTE: userId e ptId devono essere fuori dall'oggetto scheda -->
-    <label>Utente:</label>
-    <select name="userId" required>
-        <option value="" disabled selected>-- Seleziona utente --</option>
-        <option th:each="u : ${users}" th:value="${u.id}" th:text="${u.nome + ' ' + u.cognome}"></option>
-    </select>
-    
-    <br><br>
-    
+    <!-- Campo hidden - l'utente non può modificarlo ma viene passato lo stesso -->
+    <input type="hidden" name="userId" th:value="${userId}" />
     <label>Personal Trainer:</label>
     <select name="ptId">
         <option value="">-- Nessun PT --</option>
@@ -55,7 +48,7 @@
     
     <br><br>
     
-    <button type="submit">Crea Scheda</button>
+    <button type="submit">Conferma</button>
 </form>
 
 </body>
