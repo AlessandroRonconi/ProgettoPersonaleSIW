@@ -13,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,12 +24,13 @@ public class SchedaAllenamento {
     private Long id;
 
     @NotNull(message = "La data di inizio è obbligatoria")
-    @Future(message = "la data di inizio devee essere futura")
+    @Future(message = "la data di inizio deve essere futura")
     @Column(nullable = false)
     private LocalDate dataInizio;
 
-    @FutureOrPresent(message = "La data di fine deve essere oggi o futura")
-    @Future(message = "la data di fine devee essere futura")
+    
+    @NotNull(message = "La data di inizio è obbligatoria")
+    @Future(message = "la data di fine deve essere futura")
     @Column(nullable = false)
     private LocalDate dataFine;
 

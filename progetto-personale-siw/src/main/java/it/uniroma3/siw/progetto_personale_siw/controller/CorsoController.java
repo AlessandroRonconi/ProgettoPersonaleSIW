@@ -141,7 +141,7 @@ public class CorsoController {
         }
     }
 
-    @GetMapping("/admin/corsi/{id}/edit")
+    @GetMapping("/admin/corsi/{id}/edit")    
     public String editForm(@PathVariable Long id, Model model) {
         Corso corso = this.corsoService.findById(id);
         if (corso.getWeekdayOrario() == null) {
@@ -162,26 +162,13 @@ public class CorsoController {
             model.addAttribute("istruttori", istruttoreService.findAll());
             return "admin/corsi/form";
         }
-
-        Corso corsoEsistente = corsoService.findById(id);
-        corsoEsistente.setNome(corsoForm.getNome());
-        corsoEsistente.setDescrizione(corsoForm.getDescrizione());
-        corsoEsistente.setDurataLezione(corsoForm.getDurataLezione());
-        corsoEsistente.setLivello(corsoForm.getLivello());
-        corsoEsistente.setCapacita(corsoForm.getCapacita());
-
-        // Aggiorna gli orari
-        corsoEsistente.setWeekdayOrario(corsoForm.getWeekdayOrario());
-        corsoEsistente.getWeekdayOrario().values().removeIf(String::isBlank);
-
-        // Aggiorna l'istruttore
-        if (istruttoreId != null && istruttoreId > 0) {
-            istruttoreService.findById(istruttoreId).ifPresent(corsoEsistente::setIstruttore);
-        } else {
-            corsoEsistente.setIstruttore(null);
+        try {
+            corsoService.update(corsoForm, id, istruttoreId); //passi il corso vecchio con id ed il corso modificato Form
+        } catch (DuplicateCorsoException e) {
+            model.addAttribute("istruttori", istruttoreService.findAll());
+            model.addAttribute("errorMessage", e.getMessage());
+            return "admin/corsi/form";
         }
-
-        corsoService.save(corsoEsistente);
         return "redirect:/corsi";
     }
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista Schede Allenamento</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<h1>Lista Schede Allenamento (Admin)</h1>
+
+<!-- Pulsante per creare nuova scheda -->
+<a th:href="@{/admin/schede/new}">Crea nuova scheda</a>
+
+<br><br>
+
+<div th:if="${#lists.isEmpty(schede)}">
+    <p>Non ci sono schede create.</p>
+</div>
+
+<table border="1" th:if="${!#lists.isEmpty(schede)}">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Utente</th>
+            <th>Personal Trainer</th>
+            <th>Obiettivo</th>
+            <th>Data Inizio</th>
+            <th>Data Fine</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="scheda : ${schede}">
+            <td th:text="${scheda.id}"></td>
+            <td th:text="${scheda.user != null ? scheda.user.nome + ' ' + scheda.user.cognome : '-'}"></td>
+            <td th:text="${scheda.pt != null ? scheda.pt.nome + ' ' + scheda.pt.cognome : '-'}"></td>
+            <td th:text="${scheda.obiettivo}"></td>
+            <td th:text="${scheda.dataInizio}"></td>
+            <td th:text="${scheda.dataFine}"></td>
+            <td>
+                <a th:href="@{'/admin/schede/' + ${scheda.id}}">Apri</a> |
+                <a th:href="@{'/admin/schede/' + ${scheda.id} + '/edit'}">Modifica</a> |
+                <a th:href="@{'/admin/schede/' + ${scheda.id} + '/esercizi/new'}">Aggiungi esercizi</a> |
+                <a th:href="@{'/admin/schede/' + ${scheda.id} + '/commenti/new'}">Commenti</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

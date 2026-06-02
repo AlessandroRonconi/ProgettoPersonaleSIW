@@ -54,11 +54,11 @@
         </thead>
 
         <tbody>
-        <tr th:each="esercizio : ${scheda.esercizi}">
-            <td th:text="${esercizio.nome}"></td>
-            <td th:text="${esercizio.serie}"></td>
-            <td th:text="${esercizio.ripetizioni}"></td>
-            <td th:text="${esercizio.recuperoSec}"></td>
+        <tr th:each="esScheda : ${scheda.eserciziScheda}">
+            <td th:text="${esScheda.nome}"></td>
+            <td th:text="${esScheda.serie}"></td>
+            <td th:text="${esScheda.ripetizioni}"></td>
+            <td th:text="${esScheda.recuperoSec}"></td>
         </tr>
         </tbody>
     </table>

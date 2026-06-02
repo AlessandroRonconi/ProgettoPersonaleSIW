@@ -66,8 +66,7 @@ public class SecurityConfig {
             // autorizzazioni per admin
             authorize.requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority(Credentials.ADMIN_ROLE);
             authorize.requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority(Credentials.ADMIN_ROLE);
-            authorize.requestMatchers(HttpMethod.GET, "/esercizi", "/esercizi/new")
-                    .hasAuthority(Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.GET, "/esercizi", "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE);
             authorize.requestMatchers(HttpMethod.POST, "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE);
         });
 

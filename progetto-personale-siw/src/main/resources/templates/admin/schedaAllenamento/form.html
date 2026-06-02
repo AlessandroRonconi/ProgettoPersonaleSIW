@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Crea Scheda Allenamento</title>
+    <link rel="stylesheet" href="/css/stile.css" />
+</head>
+<body>
+
+<h1>Crea nuova scheda</h1>
+
+<div th:if="${error}" class="alert alert-danger" style="color:red">
+    <p th:text="${error}"></p>
+</div>
+
+<form th:action="@{/admin/schede/new}" th:object="${scheda}" method="post">
+    
+    <!-- IMPORTANTE: userId e ptId devono essere fuori dall'oggetto scheda -->
+    <label>Utente:</label>
+    <select name="userId" required>
+        <option value="" disabled selected>-- Seleziona utente --</option>
+        <option th:each="u : ${users}" th:value="${u.id}" th:text="${u.nome + ' ' + u.cognome}"></option>
+    </select>
+    
+    <br><br>
+    
+    <label>Personal Trainer:</label>
+    <select name="ptId">
+        <option value="">-- Nessun PT --</option>
+        <option th:each="pt : ${ptList}" th:value="${pt.id}" th:text="${pt.nome + ' ' + pt.cognome}"></option>
+    </select>
+    
+    <br><br>
+    
+    <!-- Questi sono campi dell'oggetto scheda -->
+    <label>Obiettivo:</label>
+    <input type="text" th:field="*{obiettivo}" />
+    <span th:if="${#fields.hasErrors('obiettivo')}" th:errors="*{obiettivo}" style="color:red"></span>
+    
+    <br><br>
+    
+    <label>Data inizio:</label>
+    <input type="date" th:field="*{dataInizio}" />
+    <span th:if="${#fields.hasErrors('dataInizio')}" th:errors="*{dataInizio}" style="color:red"></span>
+    
+    <br><br>
+    
+    <label>Data fine:</label>
+    <input type="date" th:field="*{dataFine}" />
+    <span th:if="${#fields.hasErrors('dataFine')}" th:errors="*{dataFine}" style="color:red"></span>
+    
+    <br><br>
+    
+    <label>Note:</label>
+    <textarea th:field="*{note}"></textarea>
+    
+    <br><br>
+    
+    <button type="submit">Crea Scheda</button>
+</form>
+
+</body>
+</html>

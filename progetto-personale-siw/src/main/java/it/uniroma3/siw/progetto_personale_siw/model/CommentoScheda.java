@@ -33,5 +33,53 @@ public class CommentoScheda {
 
     @ManyToOne
     private SchedaAllenamento scheda;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTesto() {
+        return testo;
+    }
+
+    public void setTesto(String testo) {
+        this.testo = testo;
+    }
+
+    public String getAutore() {
+        return autore;
+    }
+
+    public void setAutore(String autore) {
+        this.autore = autore;
+    }
+
+    public LocalDateTime getDataOra() {
+        return dataOra;
+    }
+
+    public void setDataOra(LocalDateTime dataOra) {
+        this.dataOra = dataOra;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public SchedaAllenamento getScheda() {
+        return scheda;
+    }
+
+    public void setScheda(SchedaAllenamento scheda) {
+        this.scheda = scheda;
+    }
 }
 

@@ -1,10 +1,12 @@
 package it.uniroma3.siw.progetto_personale_siw.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import it.uniroma3.siw.progetto_personale_siw.model.PersonalTrainer;
 import it.uniroma3.siw.progetto_personale_siw.model.SchedaAllenamento;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
 
@@ -29,5 +31,8 @@ public interface SchedaAllenamentoRepository extends CrudRepository<SchedaAllena
     } */
     /*in controller prima findByUser(user) poi findByUserWithDetails(user) */
     List<SchedaAllenamento> findByUser(User user);
+
+    boolean existsByUserAndPtAndDataInizioAndDataFineAndObiettivo(User user, PersonalTrainer pt, LocalDate dataInizio,
+            LocalDate dataFine, String obiettivo);
 
 }

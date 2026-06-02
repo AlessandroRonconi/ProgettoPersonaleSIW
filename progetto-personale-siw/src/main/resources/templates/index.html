@@ -10,12 +10,6 @@
         <span th:if="${userDetails == null}">
                 Non sei loggato
         </span>
-        <header>
-                <div th:if="${userDetails}">
-                        <form th:action="@{/logout}" method="POST" style="display:inline;">
-                                <button type="submit">Logout</button>
-                        </form>
-        </header>
 </head>
 
 <body>
@@ -44,7 +38,7 @@
 
         <h2>
                 <div sec:authorize="hasAnyAuthority('USER','ADMIN')">
-                        <a th:href="@{'/utente/profilo'}">User</a>
+                        <a th:href="@{'/utente/profilo'}">Pagina personale Utente</a>
                 </div>
         </h2>
 
@@ -54,6 +48,18 @@
                 </div>
         </h2>
 
+        <h2>
+                <div sec:authorize="hasAnyAuthority('ADMIN')">
+                        <a th:href="@{/admin/schede}">Schede allenamento</a>
+                </div>
+        </h2>
+
+        <header>
+                <div th:if="${userDetails}">
+                        <form th:action="@{/logout}" method="POST" style="display:inline;">
+                                <button type="submit">Logout</button>
+                        </form>
+        </header>
 
 </body>
 

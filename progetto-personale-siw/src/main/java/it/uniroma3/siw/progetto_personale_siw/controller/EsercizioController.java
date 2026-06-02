@@ -1,6 +1,6 @@
 package it.uniroma3.siw.progetto_personale_siw.controller;
 
-import it.uniroma3.siw.progetto_personale_siw.model.DuplicateEsercizioException;
+import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateEsercizioException;
 import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
 import it.uniroma3.siw.progetto_personale_siw.service.EsercizioService;
 import jakarta.validation.Valid;
