@@ -32,7 +32,11 @@ public interface SchedaAllenamentoRepository extends CrudRepository<SchedaAllena
     /*in controller prima findByUser(user) poi findByUserWithDetails(user) */
     List<SchedaAllenamento> findByUser(User user);
 
-    boolean existsByUserAndPtAndDataInizioAndDataFineAndObiettivo(User user, PersonalTrainer pt, LocalDate dataInizio,
-            LocalDate dataFine, String obiettivo);
+    boolean existsByUserAndDataInizioAndDataFine(User user, LocalDate dataInizio, LocalDate dataFine);
+
+    boolean existsByUserAndDataInizioAndDataFineAndIdNot(User user, LocalDate dataInizio, LocalDate dataFine,
+            Long idSchedaOld);
+
+   
 
 }

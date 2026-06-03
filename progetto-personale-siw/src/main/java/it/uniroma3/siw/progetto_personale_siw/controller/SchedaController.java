@@ -1,10 +1,8 @@
 package it.uniroma3.siw.progetto_personale_siw.controller;
 
-import it.uniroma3.siw.progetto_personale_siw.repository.SchedaAllenamentoRepository;
 import it.uniroma3.siw.progetto_personale_siw.service.UserService;
 import jakarta.validation.Valid;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateSchedaAllenamentoException;
@@ -59,29 +58,62 @@ public class SchedaController {
         model.addAttribute("ptList", personalTrainerService.findAll());
         return "admin/schedaAllenamento/form";    
     }
+
     @PostMapping("/admin/schede/new")
     public String creaScheda( @Valid @ModelAttribute("scheda") SchedaAllenamento scheda,BindingResult bindingResult,@RequestParam Long userId,@RequestParam(required = false) Long ptId,Model model) {
-        model.addAttribute("users", userService.findAll());
-        model.addAttribute("ptList", personalTrainerService.findAll());
         if (bindingResult.hasErrors()) {
-            //model.addAttribute("users", userService.findAll());
-            //model.addAttribute("ptList", personalTrainerService.findAll());
+            model.addAttribute("users", userService.findAll());
+            model.addAttribute("ptList", personalTrainerService.findAll());
             return "admin/schedaAllenamento/form";
         }
         try {
             schedaAllenamentoService.creaScheda(scheda, userId, ptId);
         } catch (DuplicateSchedaAllenamentoException e) {
             model.addAttribute("error", e.getMessage());
-            //model.addAttribute("users", userService.findAll());
-            //model.addAttribute("ptList", personalTrainerService.findAll());
+            model.addAttribute("users", userService.findAll());
+            model.addAttribute("ptList", personalTrainerService.findAll());
             return "admin/schedaAllenamento/form";
         }
         return "redirect:/admin/schede";
     }
+
     @GetMapping("/admin/schede")
     public String listaSchede(Model model) {
         model.addAttribute("schede", schedaAllenamentoService.findAll());
-        return "admin/schedaAllenamento/list";
+        return "admin/schedaAllenamento/list";//mi da tutte le schede di tutti gli utenti
+    }
+
+    @GetMapping("/admin/schede/{id}")
+    public String showScheda(@PathVariable Long id, Model model) {
+        model.addAttribute("scheda", schedaAllenamentoService.findById(id));
+        return "admin/schedaAllenamento/show";//mostra la singola scheda
+    }
+
+    @GetMapping("/admin/schede/{id}/edit")
+    public String editScheda(@PathVariable("id") Long id, Model model) {
+        SchedaAllenamento scheda = schedaAllenamentoService.findById(id);
+        model.addAttribute("scheda", scheda);
+        model.addAttribute("ptList", this.personalTrainerService.findAll());
+        model.addAttribute("userId", scheda.getUser().getId());
+        return "admin/schedaAllenamento/editForm";
+    }
+    @PostMapping("/admin/schede/{id}/edit")
+    public String modificaScheda(@PathVariable("id") Long id, @Valid @ModelAttribute("scheda") SchedaAllenamento schedaNuova, BindingResult bindingResult, @RequestParam Long userId,@RequestParam(required = false) Long ptId, Model model) {
+        if(bindingResult.hasErrors()){
+            model.addAttribute("ptList", this.personalTrainerService.findAll());
+            model.addAttribute("userId", userId);
+            return "admin/schedaAllenamento/editForm";
+        }
+        try {
+            this.schedaAllenamentoService.updadeScheda(id, schedaNuova, ptId, userId);
+        } catch (DuplicateSchedaAllenamentoException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("userId", userId);
+            model.addAttribute("ptList", personalTrainerService.findAll());
+            return "admin/schedaAllenamento/editForm";
+
+        }
+    return "redirect:/admin/schede/" + id;
     }
     
     
