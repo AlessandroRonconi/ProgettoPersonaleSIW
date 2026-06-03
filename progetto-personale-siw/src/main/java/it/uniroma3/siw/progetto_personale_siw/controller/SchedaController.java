@@ -1,5 +1,6 @@
 package it.uniroma3.siw.progetto_personale_siw.controller;
 
+import it.uniroma3.siw.progetto_personale_siw.service.EsercizioService;
 import it.uniroma3.siw.progetto_personale_siw.service.UserService;
 import jakarta.validation.Valid;
 
@@ -17,12 +18,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateSchedaAllenamentoException;
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
+import it.uniroma3.siw.progetto_personale_siw.model.EsercizioScheda;
 import it.uniroma3.siw.progetto_personale_siw.model.SchedaAllenamento;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.service.CredentialsService;
+import it.uniroma3.siw.progetto_personale_siw.service.EsercizioSchedaService;
 import it.uniroma3.siw.progetto_personale_siw.service.PersonalTrainerService;
 import it.uniroma3.siw.progetto_personale_siw.service.SchedaAllenamentoService;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -31,15 +36,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SchedaController {
 
+    private EsercizioService esercizioService;
     private UserService userService;
     private PersonalTrainerService personalTrainerService;
     private CredentialsService credentialsService;
     private SchedaAllenamentoService schedaAllenamentoService;
-    public SchedaController(CredentialsService credentialsService, SchedaAllenamentoService schedaAllenamentoService, UserService userService, PersonalTrainerService personalTrainerService){
+    private EsercizioSchedaService esercizioSchedaService;
+    public SchedaController(EsercizioSchedaService esercizioSchedaService, CredentialsService credentialsService, SchedaAllenamentoService schedaAllenamentoService, UserService userService, PersonalTrainerService personalTrainerService, EsercizioService esercizioService){
         this.credentialsService = credentialsService;
         this.schedaAllenamentoService = schedaAllenamentoService;
         this.userService = userService;
         this.personalTrainerService = personalTrainerService;
+        this.esercizioService = esercizioService;
+        this.esercizioSchedaService = esercizioSchedaService;
     }
 
     @GetMapping("/utente/mie-schede")
@@ -115,6 +124,30 @@ public class SchedaController {
         }
     return "redirect:/admin/schede/" + id;
     }
+
+    @GetMapping("/admin/schede/{id}/esercizi/add")
+    public String addEsercizio(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("scheda", this.schedaAllenamentoService.findById(id));
+        model.addAttribute("esercizi", this.esercizioService.findAll());
+        model.addAttribute("esercizioScheda", new EsercizioScheda());
+        return "admin/schedaAllenamento/addEsercizi";
+    }
+
+    @PostMapping("/admin/schede/{id}/esercizi/add")
+    public String addEsScheda(@PathVariable("id") Long id, @Valid @ModelAttribute("esercizioScheda") EsercizioScheda esercizioScheda, BindingResult bindingResult, @RequestParam Long esercizioId, Model model) {
+        SchedaAllenamento scheda = schedaAllenamentoService.findById(id);
+        if(bindingResult.hasErrors()){
+            model.addAttribute("scheda", scheda);
+            model.addAttribute("esercizi", esercizioService.findAll());
+            model.addAttribute("esercizioScheda", esercizioScheda);
+            return "admin/schedaAllenamento/addEsercizi";
+        }
+        this.esercizioSchedaService.save(id, esercizioId, esercizioScheda.getSerie(),esercizioScheda.getRipetizioni(),esercizioScheda.getRecuperoSec());
+        return "redirect:/admin/schede/" + id;
+    }
+    
+    
+    
     
     
     

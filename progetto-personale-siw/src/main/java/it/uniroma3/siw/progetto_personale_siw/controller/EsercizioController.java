@@ -41,7 +41,7 @@ public class EsercizioController {
         }
         try {
             this.esercizioService.save(esercizio);
-        } catch (DuplicateEsercizioException e) {
+        } catch (DuplicateEsercizioException e) {//non fuziona controlla
             model.addAttribute("errorMessage",e.getMessage());
             return "esercizi/form";
         }

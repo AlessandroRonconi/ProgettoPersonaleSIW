@@ -29,10 +29,10 @@ public class EsercizioScheda {//è l'esercizio che appartiene alla scheda con le
     @Min(value = 0, message = "Il recupero non può essere negativo")
     private Integer recuperoSec;
 
-    @ManyToOne
+    @ManyToOne //owner
     private SchedaAllenamento scheda;
 
-    @ManyToOne
+    @ManyToOne //owner
     private Esercizio esercizio;
 
     public Long getId() {

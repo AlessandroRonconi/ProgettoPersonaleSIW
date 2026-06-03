@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aggiungi esercizio</title>
+</head>
+<body>
+
+<h1>Aggiungi esercizio</h1>
+
+<form th:action="@{/admin/schede/{id}/esercizi/add(id=${scheda.id})}" th:object="${esercizioScheda}" method="post">
+
+    <div>
+        <label>Esercizio:</label>
+        <select name="esercizioId" required>
+            <option value="">-- Seleziona un esercizio --</option>
+            <option th:each="e : ${esercizi}" th:value="${e.id}" th:text="${e.nome}">
+            </option>
+        </select>
+    </div>
+
+    <br>
+
+    <div>
+        <label>Serie:</label>
+        <input type="number" th:field="*{serie}">
+        <span th:if="${#fields.hasErrors('serie')}"th:errors="*{serie}" style="color:red"></span>
+    </div>
+
+    <br>
+
+    <div>
+        <label>Ripetizioni:</label>
+        <input type="number" th:field="*{ripetizioni}">
+        <span th:if="${#fields.hasErrors('ripetizioni')}"th:errors="*{ripetizioni}" style="color:red"></span>
+    </div>
+
+    <br>
+
+    <div>
+        <label>Recupero (secondi):</label>
+        <input type="number" th:field="*{recuperoSec}">
+        <span th:if="${#fields.hasErrors('recuperoSec')}"th:errors="*{recuperoSec}" style="color:red"></span>
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Aggiungi esercizio
+    </button>
+
+</form>
+
+</body>
+</html>

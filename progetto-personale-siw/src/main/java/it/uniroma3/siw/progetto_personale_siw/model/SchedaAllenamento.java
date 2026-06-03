@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -52,8 +51,6 @@ public class SchedaAllenamento {
     /*@ManyToMany // new table, è owner
     private List<Esercizio> esercizi = new ArrayList<>();*/
 
-    @OneToMany(mappedBy = "scheda", cascade = CascadeType.ALL) //se salvo/elimino la scheda si salvano/eliminano i commenti
-    private List<CommentoScheda> commenti = new ArrayList<>();
 
     @OneToMany(mappedBy = "scheda")
     private List<EsercizioScheda> eserciziScheda = new ArrayList<>();
@@ -139,13 +136,6 @@ public class SchedaAllenamento {
         return true;
     }
 
-    public List<CommentoScheda> getCommenti() {
-        return commenti;
-    }
-
-    public void setCommenti(List<CommentoScheda> commenti) {
-        this.commenti = commenti;
-    }
 
     public List<EsercizioScheda> getEserciziScheda() {
         return eserciziScheda;

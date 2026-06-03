@@ -29,7 +29,7 @@
             <th>Esercizio</th>
             <th>Serie</th>
             <th>Ripetizioni</th>
-            <th>Carico(kg)</th>
+            <th>recuperoSec</th>
             <th>Azioni</th>
         </tr>
     </thead>
@@ -38,27 +38,15 @@
             <td th:text="${esScheda.esercizio.nome}"></td>
             <td th:text="${esScheda.serie}"></td>
             <td th:text="${esScheda.ripetizioni}"></td>
-            <td th:text="${esScheda.carico}"></td>
+            <td th:text="${esScheda.recuperoSec}"></td>
             <td>
                 <a th:href="@{'/admin/schede/' + ${scheda.id} + '/esercizi/' + ${esScheda.id} + '/remove'}">Rimuovi</a>
             </td>
         </tr>
     </tbody>
 </table>
-<a th:href="@{'/admin/schede/' + ${scheda.id} + '/esercizi/new'}">Aggiungi esercizi</a>
+<a th:href="@{'/admin/schede/' + ${scheda.id} + '/esercizi/add'}">Aggiungi esercizi</a>
 
-<h2>Commenti</h2>
-<div th:if="${#lists.isEmpty(scheda.commenti)}">
-    <p>Nessun commento.</p>
-</div>
-<div th:if="${!#lists.isEmpty(scheda.commenti)}">
-    <div th:each="commento : ${scheda.commenti}" style="border:1px solid #ccc; margin:10px; padding:10px;">
-        <!--<p>Utente:<span th:text="${commento.user.nome + ' ' + commento.user.cognome}"></span></p>-->
-        <p>Commento:<span th:text="${commento.testo}"></span></p>
-        <p>scritto da:<span th:text="${commento.user.nome + ' ' + commento.user.cognome}"></span></p>
-    </div>
-</div>
-<a th:href="@{'/admin/schede/' + ${scheda.id} + '/commenti/new'}">Aggiungi commento</a>
 
 <br>
 <a th:href="@{/admin/schede}">Torna alla lista</a>
