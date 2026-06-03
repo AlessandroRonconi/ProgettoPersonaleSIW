@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siw.progetto_personale_siw.exception.CorsoOrarioConflictException;
 import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateCorsoException;
 import it.uniroma3.siw.progetto_personale_siw.model.Commento;
 import it.uniroma3.siw.progetto_personale_siw.model.Corso;
@@ -138,10 +139,14 @@ public class CorsoController {
             model.addAttribute("istruttori", istruttoreService.findAll());
             bindingResult.reject("corso.duplicate", "Esiste già un corso con questo nome");
             return "admin/corsi/form";
+        } catch (CorsoOrarioConflictException e) {
+            model.addAttribute("istruttori", istruttoreService.findAll());
+            model.addAttribute("errorMessage", e.getMessage());
+            return "admin/corsi/form";
         }
     }
 
-    @GetMapping("/admin/corsi/{id}/edit")    
+    @GetMapping("/admin/corsi/{id}/edit")
     public String editForm(@PathVariable Long id, Model model) {
         Corso corso = this.corsoService.findById(id);
         if (corso.getWeekdayOrario() == null) {
@@ -163,8 +168,13 @@ public class CorsoController {
             return "admin/corsi/form";
         }
         try {
-            corsoService.update(corsoForm, id, istruttoreId); //passi il corso vecchio con id ed il corso modificato Form
+            corsoService.update(corsoForm, id, istruttoreId); // passi il corso vecchio con id ed il corso modificato
+                                                              // corsoForm
         } catch (DuplicateCorsoException e) {
+            model.addAttribute("istruttori", istruttoreService.findAll());
+            model.addAttribute("errorMessage", e.getMessage());
+            return "admin/corsi/form";
+        } catch (CorsoOrarioConflictException e) {
             model.addAttribute("istruttori", istruttoreService.findAll());
             model.addAttribute("errorMessage", e.getMessage());
             return "admin/corsi/form";

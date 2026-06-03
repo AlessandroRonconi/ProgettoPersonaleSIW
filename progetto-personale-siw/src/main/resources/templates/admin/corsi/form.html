@@ -49,6 +49,9 @@
                     th:value="*{weekdayOrario[__${giorno}__]}"
                     placeholder="es. 09:00-11:00 (lascia vuoto se non disponibile)" />
             </div>
+            <div th:if="${errorMessage}" class="error-banner">
+                <p th:text="${errorMessage}"></p>
+            </div>
         </div>
         <div>
             <span><button type="submit">Salva</button></span>

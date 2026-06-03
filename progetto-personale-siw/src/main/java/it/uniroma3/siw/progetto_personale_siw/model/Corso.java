@@ -61,7 +61,7 @@ public class Corso {
     @OneToMany(mappedBy = "corso")
     private List<Commento> commenti;
 
-    @OneToMany(mappedBy = "corso", cascade=CascadeType.REMOVE)
+    @OneToMany(mappedBy = "corso", cascade = CascadeType.REMOVE)
     private List<Prenotazione> prenotazioni;
 
     public Long getId() {
