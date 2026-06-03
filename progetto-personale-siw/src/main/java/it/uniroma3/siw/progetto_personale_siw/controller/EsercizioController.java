@@ -29,11 +29,13 @@ public class EsercizioController {
         model.addAttribute("esercizi", this.esercizioService.findAll());
         return "esercizi/show";
     }
+
     @GetMapping("/esercizi/new")//puo farlo l'admin
     public String creaEsercizio(Model model) {
         model.addAttribute("esercizio", new Esercizio());
         return "esercizi/form";
     }
+
     @PostMapping("/esercizi/new")//puo farlo l'admin
     public String creaEs(@Valid @ModelAttribute("esercizio") Esercizio esercizio, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
@@ -41,8 +43,8 @@ public class EsercizioController {
         }
         try {
             this.esercizioService.save(esercizio);
-        } catch (DuplicateEsercizioException e) {//non fuziona controlla
-            model.addAttribute("errorMessage",e.getMessage());
+        } catch (DuplicateEsercizioException e) {
+            model.addAttribute("error", e.getMessage());
             return "esercizi/form";
         }
         return "redirect:/esercizi";

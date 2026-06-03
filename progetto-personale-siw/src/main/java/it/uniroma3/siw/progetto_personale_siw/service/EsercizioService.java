@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateEsercizioException;
 import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
 
 @Service
@@ -24,6 +25,9 @@ public class EsercizioService {
     }
 
     public void save(Esercizio esercizio) {
+        if(this.esercizioRepository.existsByNome(esercizio.getNome())){
+            throw new DuplicateEsercizioException("Esercizio con nome '" + esercizio.getNome() + "' già esistente!");
+        }
         this.esercizioRepository.save(esercizio);
     }
 

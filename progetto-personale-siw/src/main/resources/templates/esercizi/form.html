@@ -10,7 +10,7 @@
 
     <h1>Nuovo esercizio</h1>
 
-    <span th:if="${errorMessage}" th:text="${error}" class="error-message"></span>
+    <span th:if="${error}" th:text="${error}" class="error-message"></span>
 
     <form th:action="@{/esercizi/new}" method="POST" th:object="${esercizio}">
 
@@ -20,11 +20,6 @@
         </div>
 
         <br>
-
-        <div>
-            Descrizione:<span><input type="text" th:field="*{descrizione}"></span>
-            <span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}" class="error-message"></span>
-        </div>
 
         <br>
 

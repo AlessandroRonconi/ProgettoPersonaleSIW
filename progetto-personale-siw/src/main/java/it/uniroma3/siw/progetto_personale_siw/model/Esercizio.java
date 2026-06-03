@@ -22,9 +22,6 @@ public class Esercizio {
     @Column(nullable = false, unique = true)
     private String nome;
 
-    @Column(length = 500)
-    private String descrizione;
-
     //@ManyToMany(mappedBy = "esercizi")
     //private List<SchedaAllenamento> schede = new ArrayList<>();
 
@@ -47,13 +44,6 @@ public class Esercizio {
         this.nome = nome;
     }
 
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
 
     @Override
     public int hashCode() {

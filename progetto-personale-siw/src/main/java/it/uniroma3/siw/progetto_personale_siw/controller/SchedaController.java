@@ -26,7 +26,6 @@ import it.uniroma3.siw.progetto_personale_siw.service.EsercizioSchedaService;
 import it.uniroma3.siw.progetto_personale_siw.service.PersonalTrainerService;
 import it.uniroma3.siw.progetto_personale_siw.service.SchedaAllenamentoService;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 

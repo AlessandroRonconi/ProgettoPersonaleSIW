@@ -13,7 +13,6 @@ import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.repository.PersonalTrainerRepository;
 import it.uniroma3.siw.progetto_personale_siw.repository.SchedaAllenamentoRepository;
 import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
-import jakarta.validation.Valid;
 
 @Service
 @Transactional

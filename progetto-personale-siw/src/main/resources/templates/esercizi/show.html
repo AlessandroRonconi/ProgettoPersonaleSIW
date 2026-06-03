@@ -17,14 +17,12 @@
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Descrizione</th>
         </tr>
     </thead>
 
     <tbody>
         <tr th:each="e : ${esercizi}">
             <td th:text="${e.nome}"></td>
-            <td th:text="${e.descrizione}"></td>
         </tr>
     </tbody>
 
