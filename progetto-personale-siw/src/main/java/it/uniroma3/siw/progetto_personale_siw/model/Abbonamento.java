@@ -11,18 +11,18 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Abbonamento {//quello del singolo utente
+public class Abbonamento {// quello del singolo utente
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotNull(message = "la data di inizio è obbligatoria")
-    @Future(message = "la data deve essere nel futuro")
+    @FutureOrPresent(message = "la data deve essere nel futuro")
     @Column(nullable = false)
     private LocalDate dataInizio;
 
@@ -31,12 +31,12 @@ public class Abbonamento {//quello del singolo utente
     @Column(nullable = false)
     private LocalDate dataFine;
 
-    @NotBlank(message = "il tipo è obbligatorio")
+    @NotNull(message = "il tipo è obbligatorio")
     @JoinColumn(name = "tipo_di_abbonamento_id")
-    @ManyToOne //owner
+    @ManyToOne
     private TipoAbbonamento tipoDiAbbonamento;
 
-    @OneToOne //owner
+    @OneToOne // owner
     private User user;
 
     public Long getId() {

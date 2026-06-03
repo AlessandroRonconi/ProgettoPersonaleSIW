@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateCredentialsException;
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.service.CredentialsService;
@@ -53,23 +52,25 @@ public class AuthController {
         return "register";
     }
 
-    @PostMapping("/register")//da finire con gli abbonamenti
-    public String Registrazione(@Valid @ModelAttribute Credentials credentials, BindingResult bindingResult,@RequestParam Long tipoAbbonamentoId,Model model) {
-        if (bindingResult.hasErrors()) { // errori di validazione
-            model.addAttribute("tipiAbbonamento", tipoAbbonamentoService.findAll());//vs for each in html per il nome ""
+    @PostMapping("/register")
+    public String Registrazione(
+            @Valid @ModelAttribute Credentials credentials,
+            BindingResult bindingResult,
+            @RequestParam Long tipoAbbonamentoId,
+            Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("tipiAbbonamento", tipoAbbonamentoService.findAll());
             return "register";
         }
-        // sotto controllo errori di duplicazione
+
         try {
-            credentialsService.save(credentials, tipoAbbonamentoId); // ho in credentials cascade, se salvo credentials salvo utente
-        } catch (DuplicateCredentialsException e) {
-            model.addAttribute("error", e.getMessage());
-            model.addAttribute("credentials", credentials);
-            return "register";
+            credentialsService.save(credentials, tipoAbbonamentoId);
+        } catch (Exception e) {
+            throw e;
         }
-        System.out.println("[CONTROLLER] Redirect a /login");
+
         return "redirect:/login";
-        // dopo il login, come faccio a sapere chi è loggato? GlobalController
     }
 
 }
