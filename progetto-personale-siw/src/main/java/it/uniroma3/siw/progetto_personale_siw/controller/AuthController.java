@@ -64,11 +64,7 @@ public class AuthController {
             return "register";
         }
 
-        try {
-            credentialsService.save(credentials, tipoAbbonamentoId);
-        } catch (Exception e) {
-            throw e;
-        }
+        credentialsService.save(credentials, tipoAbbonamentoId);
 
         return "redirect:/login";
     }

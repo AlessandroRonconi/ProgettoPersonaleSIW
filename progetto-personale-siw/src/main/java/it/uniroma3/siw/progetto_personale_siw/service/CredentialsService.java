@@ -38,7 +38,7 @@ public class CredentialsService {
     }
 
     @Transactional
-    public void save(Credentials credentials, Long abbonamentoId) {
+    public void save(Credentials credentials, Long TipoAbbonamentoId) {
 
         if (credentialsRepository.existsByUsername(credentials.getUsername())) {
             throw new DuplicateCredentialsException(
@@ -52,8 +52,8 @@ public class CredentialsService {
                     "Email '" + user.getEmail() + "' già registrata. Usane un'altra.");
         }
 
-        TipoAbbonamento tipo = tipoAbbonamentoRepository.findById(abbonamentoId)
-                .orElseThrow(() -> new ResourceNotFoundException("Abbonamento non trovato"));
+        TipoAbbonamento tipo = tipoAbbonamentoRepository.findById(TipoAbbonamentoId)
+                .orElseThrow(() -> new ResourceNotFoundException("Tipo di abbonamento non trovato"));
 
         // sincronizzazione relazione Credentials <-> User
         user.setCredentials(credentials);
