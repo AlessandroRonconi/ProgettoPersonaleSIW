@@ -12,30 +12,31 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Abbonamento {
+public class Abbonamento {//quello del singolo utente
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank(message = "la data di inizio è obbligatoria")
+    @NotNull(message = "la data di inizio è obbligatoria")
     @Future(message = "la data deve essere nel futuro")
     @Column(nullable = false)
     private LocalDate dataInizio;
 
-    @NotBlank(message = "la data di fine è obbligatoria")
+    @NotNull(message = "la data di fine è obbligatoria")
     @Future(message = "la data deve essere nel futuro")
     @Column(nullable = false)
     private LocalDate dataFine;
 
     @NotBlank(message = "il tipo è obbligatorio")
     @JoinColumn(name = "tipo_di_abbonamento_id")
-    @ManyToOne
+    @ManyToOne //owner
     private TipoAbbonamento tipoDiAbbonamento;
 
-    @OneToOne
+    @OneToOne //owner
     private User user;
 
     public Long getId() {

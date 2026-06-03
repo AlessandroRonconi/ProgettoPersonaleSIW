@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.progetto_personale_siw.model.Abbonamento;
 import it.uniroma3.siw.progetto_personale_siw.model.Credentials;
 import it.uniroma3.siw.progetto_personale_siw.model.Prenotazione;
 import it.uniroma3.siw.progetto_personale_siw.model.User;
+import it.uniroma3.siw.progetto_personale_siw.service.AbbonamentoService;
 import it.uniroma3.siw.progetto_personale_siw.service.CorsoService;
 import it.uniroma3.siw.progetto_personale_siw.service.CredentialsService;
 import it.uniroma3.siw.progetto_personale_siw.service.PrenotazioneService;
@@ -25,19 +27,22 @@ public class UserController {
     private CredentialsService credentialsService;
     private CorsoService corsoService;
     private PrenotazioneService prenotazioneService;
-
-    public UserController(CredentialsService credentialsService, CorsoService corsoService,
+    private AbbonamentoService abbonamentoService;
+    public UserController(AbbonamentoService abbonamentoService, CredentialsService credentialsService, CorsoService corsoService,
             PrenotazioneService prenotazioneService) {
         this.credentialsService = credentialsService;
         this.prenotazioneService = prenotazioneService;
         this.corsoService = corsoService;
+        this.abbonamentoService = abbonamentoService;
     }
 
     @GetMapping("/utente/profilo")
     public String getPaginaUser(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         Credentials cred = this.credentialsService.getCredentials(userDetails.getUsername());
         User user = cred.getUser();
+        Abbonamento abbonamento = abbonamentoService.findByUser(user);
         model.addAttribute("utente", user);
+        model.addAttribute("abbonamento", abbonamento);
         return "utente/profilo";
     }
 

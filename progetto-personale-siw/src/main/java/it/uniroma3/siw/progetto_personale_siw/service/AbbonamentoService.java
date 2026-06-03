@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.progetto_personale_siw.model.Abbonamento;
+import it.uniroma3.siw.progetto_personale_siw.model.User;
 import it.uniroma3.siw.progetto_personale_siw.repository.AbbonamentoRepository;
 
 @Service
@@ -19,6 +20,9 @@ public class AbbonamentoService {
     @Transactional(readOnly = true)
     public List<Abbonamento> findAll() {
         return (List<Abbonamento>) this.abbonamentoRepository.findAll();
+    }
+    public Abbonamento findByUser(User user) {
+        return this.abbonamentoRepository.findByUser(user);
     }
 
 }

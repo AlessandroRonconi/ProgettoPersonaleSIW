@@ -21,6 +21,11 @@
         <span th:text="${utente.cognome}"></span>
     </p>
 
+    <p>
+        <strong>Abbonamento:</strong>
+        <span th:text="${abbonamento.tipoAbbonamento.nome}"></span>
+    </p>
+
     <a th:href="@{/utente/prenota-corsi}">
         Prenota corsi
     </a>

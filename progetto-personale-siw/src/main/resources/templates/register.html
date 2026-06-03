@@ -46,6 +46,17 @@
             <span th:if="${#fields.hasErrors('user.email')}" th:errors="*{user.email}" class="error-message"></span>
         </div>
 
+        <div>
+            <label>Scegli il tuo abbonamento:</label>
+            <select name="tipoAbbonamentoId" required>
+                <option value="">-- Seleziona --</option>
+                <option th:each="tipo : ${tipiAbbonamento}" 
+                        th:value="${tipo.id}" 
+                        th:text="${tipo.nome + ' - ' + tipo.prezzo + '€ - Durata: ' + tipo.durataInMesi + ' mesi'}">
+                </option>
+            </select>
+        </div>
+
         <button type="submit">Registrati</button>
 
     </form>

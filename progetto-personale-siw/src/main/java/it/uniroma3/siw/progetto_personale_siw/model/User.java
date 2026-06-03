@@ -19,7 +19,7 @@ import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users")//vedere user abbonamenti tipoabbomanento
 public class User { // utente registrato: dati personali nome, cognome, email
 
     @Id
@@ -60,7 +60,7 @@ public class User { // utente registrato: dati personali nome, cognome, email
     @OneToMany(mappedBy = "user")
     private List<SchedaAllenamento> schedaAllenamento;
 
-    @OneToOne // owner
+    @OneToOne(mappedBy = "user")  
     private Abbonamento abbonamento;
 
     @Override

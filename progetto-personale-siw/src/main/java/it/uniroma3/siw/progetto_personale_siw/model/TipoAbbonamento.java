@@ -1,16 +1,19 @@
 package it.uniroma3.siw.progetto_personale_siw.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class TipoAbbonamento {
+public class TipoAbbonamento {//generico
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -27,6 +30,9 @@ public class TipoAbbonamento {
     @NotNull(message = "deve avere una durata")
     @Column(name = "durataInMesi", nullable = false)
     private Integer durataInMesi;
+
+    @OneToMany(mappedBy = "tipoDiAbbonamento")
+    private List<Abbonamento> abbonamenti;
 
     public Long getId() {
         return id;
@@ -58,5 +64,13 @@ public class TipoAbbonamento {
 
     public void setDurataInMesi(Integer durataInMesi) {
         this.durataInMesi = durataInMesi;
+    }
+
+    public List<Abbonamento> getAbbonamenti() {
+        return abbonamenti;
+    }
+
+    public void setAbbonamenti(List<Abbonamento> abbonamenti) {
+        this.abbonamenti = abbonamenti;
     }
 }
