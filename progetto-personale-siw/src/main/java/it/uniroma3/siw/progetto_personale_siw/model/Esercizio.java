@@ -3,6 +3,7 @@ package it.uniroma3.siw.progetto_personale_siw.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,10 +23,7 @@ public class Esercizio {
     @Column(nullable = false, unique = true)
     private String nome;
 
-    //@ManyToMany(mappedBy = "esercizi")
-    //private List<SchedaAllenamento> schede = new ArrayList<>();
-
-    @OneToMany(mappedBy = "esercizio")
+    @OneToMany(mappedBy = "esercizio", cascade=CascadeType.REMOVE)
     private List<EsercizioScheda> eserciziScheda = new ArrayList<>();
 
     public Long getId() {

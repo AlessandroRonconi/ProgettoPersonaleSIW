@@ -11,7 +11,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -22,7 +21,6 @@ public class Abbonamento {// quello del singolo utente
     private Long id;
 
     @NotNull(message = "la data di inizio è obbligatoria")
-    @FutureOrPresent(message = "la data deve essere nel futuro")
     @Column(nullable = false)
     private LocalDate dataInizio;
 
