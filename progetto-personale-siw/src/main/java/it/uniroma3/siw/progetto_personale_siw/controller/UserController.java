@@ -36,6 +36,8 @@ public class UserController {
         this.abbonamentoService = abbonamentoService;
     }
 
+    
+
     @GetMapping("/utente/profilo")
     public String getPaginaUser(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         Credentials cred = this.credentialsService.getCredentials(userDetails.getUsername());

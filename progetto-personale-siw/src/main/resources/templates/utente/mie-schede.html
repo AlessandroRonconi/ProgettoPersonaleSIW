@@ -16,11 +16,13 @@
 
     <hr>
 
-    <!-- ===================== -->
-    <!-- INFORMAZIONI SCHEDA   -->
-    <!-- ===================== -->
+    
 
-    <h2 th:text="${scheda.obiettivo}">Obiettivo</h2>
+
+    <p>
+        <strong>Obbiettivo:</strong>
+        <span th:text="${scheda.obiettivo}"></span>
+    </p>
 
     <p>
         <strong>Data inizio:</strong>
@@ -54,8 +56,8 @@
         </thead>
 
         <tbody>
-        <tr th:each="esScheda : ${scheda.eserciziScheda}">
-            <td th:text="${esScheda.nome}"></td>
+        <tr th:each="esScheda : ${scheda.eserciziScheda}">  <!--eserciziScheda dall'entity schedaAllenamento-->
+            <td th:text="${esScheda.esercizio.nome}"></td>
             <td th:text="${esScheda.serie}"></td>
             <td th:text="${esScheda.ripetizioni}"></td>
             <td th:text="${esScheda.recuperoSec}"></td>
@@ -63,42 +65,7 @@
         </tbody>
     </table>
 
-    <!-- ===================== -->
-    <!-- COMMENTI              -->
-    <!-- ===================== -->
-
-    <h3>Commenti</h3>
-
-    <div th:if="${#lists.isEmpty(scheda.commenti)}">
-        <p>Nessun commento presente</p>
-    </div>
-
-    <div th:each="commento : ${scheda.commenti}">
-        <hr>
-
-        <p>
-            <strong th:text="${commento.autore}">Autore</strong>
-        </p>
-
-        <p th:text="${commento.testo}"></p>
-
-        <small th:text="${commento.dataOra}"></small>
-    </div>
-
-    <!-- ===================== -->
-    <!-- FORM COMMENTO         -->
-    <!-- ===================== -->
-
-    <h4>Aggiungi commento</h4>
-
-    <form th:action="@{/schede/{id}/commenti/new(id=${scheda.id})}"
-          method="post">
-
-        <textarea name="testo" required></textarea>
-        <br>
-
-        <button type="submit">Invia</button>
-    </form>
+    
 
 </div>
 

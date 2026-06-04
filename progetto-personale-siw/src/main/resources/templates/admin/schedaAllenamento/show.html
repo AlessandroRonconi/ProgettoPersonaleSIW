@@ -39,9 +39,7 @@
             <td th:text="${esScheda.serie}"></td>
             <td th:text="${esScheda.ripetizioni}"></td>
             <td th:text="${esScheda.recuperoSec}"></td>
-            <td>
-                <a th:href="@{'/admin/schede/' + ${scheda.id} + '/esercizi/' + ${esScheda.id} + '/remove'}">Rimuovi</a>
-            </td>
+            
         </tr>
     </tbody>
 </table>
