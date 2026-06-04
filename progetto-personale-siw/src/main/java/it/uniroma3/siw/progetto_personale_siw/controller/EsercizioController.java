@@ -12,9 +12,6 @@ import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
 import it.uniroma3.siw.progetto_personale_siw.service.EsercizioService;
 import jakarta.validation.Valid;
 
-
-
-
 @Controller
 public class EsercizioController {
 
@@ -24,21 +21,22 @@ public class EsercizioController {
         this.esercizioService = esercizioService;
     }
 
-    @GetMapping("/esercizi")//puo farlo l'admin
+    @GetMapping("/esercizi") // puo farlo l'admin
     public String mostraEsercizi(Model model) {
         model.addAttribute("esercizi", this.esercizioService.findAll());
         return "esercizi/show";
     }
 
-    @GetMapping("/esercizi/new")//puo farlo l'admin
+    @GetMapping("/esercizi/new") // puo farlo l'admin
     public String creaEsercizio(Model model) {
         model.addAttribute("esercizio", new Esercizio());
         return "esercizi/form";
     }
 
-    @PostMapping("/esercizi/new")//puo farlo l'admin
-    public String creaEs(@Valid @ModelAttribute("esercizio") Esercizio esercizio, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()){
+    @PostMapping("/esercizi/new") // puo farlo l'admin
+    public String creaEs(@Valid @ModelAttribute("esercizio") Esercizio esercizio, BindingResult bindingResult,
+            Model model) {
+        if (bindingResult.hasErrors()) {
             return "esercizi/form";
         }
         try {
@@ -50,13 +48,10 @@ public class EsercizioController {
         return "redirect:/esercizi";
 
     }
-    
+
     @PostMapping("/admin/esercizi/{id}/delete")
     public String deleteEsercizio() {
         return new String();
     }
-    
-    
-    
-    
+
 }
