@@ -22,10 +22,10 @@ import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
 public class CredentialsService {
 
     private final PasswordEncoder passwordEncoder;
-    private TipoAbbonamentoRepository tipoAbbonamentoRepository;
-    private CredentialsRepository credentialsRepository;
-    private UserRepository userRepository;
-    private AbbonamentoRepository abbonamentoRepository;
+    private final TipoAbbonamentoRepository tipoAbbonamentoRepository;
+    private final CredentialsRepository credentialsRepository;
+    private final UserRepository userRepository;
+    private final AbbonamentoRepository abbonamentoRepository;
 
     public CredentialsService(AbbonamentoRepository abbonamentoRepository,
             TipoAbbonamentoRepository tipoAbbonamentoRepository, CredentialsRepository credentialsRepository,

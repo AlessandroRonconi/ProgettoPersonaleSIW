@@ -19,8 +19,8 @@ import jakarta.validation.Valid;
 @Controller
 public class AuthController {
 
-    private TipoAbbonamentoService tipoAbbonamentoService;
-    private CredentialsService credentialsService;
+    private final TipoAbbonamentoService tipoAbbonamentoService;
+    private final CredentialsService credentialsService;
 
     public AuthController(CredentialsService credentialsService, TipoAbbonamentoService tipoAbbonamentoService) {
         this.credentialsService = credentialsService;

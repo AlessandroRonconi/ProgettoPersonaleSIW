@@ -9,7 +9,7 @@ import it.uniroma3.siw.progetto_personale_siw.service.TipoAbbonamentoService;
 @Controller
 public class TipoAbbonamentoController {
 
-    private TipoAbbonamentoService tipoAbbonamentoService;
+    private final TipoAbbonamentoService tipoAbbonamentoService;
 
     public TipoAbbonamentoController(TipoAbbonamentoService tipoAbbonamentoService) {
         this.tipoAbbonamentoService = tipoAbbonamentoService;

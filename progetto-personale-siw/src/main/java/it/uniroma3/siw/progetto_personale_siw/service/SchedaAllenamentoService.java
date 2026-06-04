@@ -18,9 +18,9 @@ import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
 @Transactional
 public class SchedaAllenamentoService {
 
-    private SchedaAllenamentoRepository schedaAllenamentoRepository;
-    private UserRepository userRepository;
-    private PersonalTrainerRepository personalTrainerRepository;
+    private final SchedaAllenamentoRepository schedaAllenamentoRepository;
+    private final UserRepository userRepository;
+    private final PersonalTrainerRepository personalTrainerRepository;
     public SchedaAllenamentoService(SchedaAllenamentoRepository schedaAllenamentoRepository, UserRepository userRepository, PersonalTrainerRepository personalTrainerRepository){
         this.schedaAllenamentoRepository = schedaAllenamentoRepository;
         this.userRepository = userRepository;

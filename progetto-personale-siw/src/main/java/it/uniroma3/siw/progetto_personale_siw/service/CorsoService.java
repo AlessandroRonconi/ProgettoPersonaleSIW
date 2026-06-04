@@ -16,8 +16,8 @@ import it.uniroma3.siw.progetto_personale_siw.repository.IstruttoreRepository;
 @Transactional
 public class CorsoService {
 
-    private CorsoRepository corsoRepository;
-    private IstruttoreRepository istruttoreRepository;
+    private final CorsoRepository corsoRepository;
+    private final IstruttoreRepository istruttoreRepository;
 
     public CorsoService(CorsoRepository corsoRepository, IstruttoreRepository istruttoreRepository) {
         this.corsoRepository = corsoRepository;
@@ -68,7 +68,8 @@ public class CorsoService {
     public void save(Corso corso) {
         // Per un nuovo corso l'id è null: usiamo -1L come excludeId così la query non
         // esclude nessun corso esistente
-        Long excludeId = corso.getId() != null ? corso.getId() : -1L;
+        Long corsoId = corso.getId();
+        Long excludeId = corsoId != null ? corsoId : -1L;
         this.checkOrariConflict(corso.getWeekdayOrario(), excludeId);
         this.corsoRepository.save(corso);
     }

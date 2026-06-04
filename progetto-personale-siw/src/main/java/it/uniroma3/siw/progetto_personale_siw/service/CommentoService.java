@@ -18,9 +18,9 @@ import it.uniroma3.siw.progetto_personale_siw.repository.CredentialsRepository;
 @Transactional
 public class CommentoService {
 
-    private CorsoRepository corsoRepository;
-    private CredentialsRepository credentialsRepository;
-    private CommentoRepository commentoRepository;
+    private final CorsoRepository corsoRepository;
+    private final CredentialsRepository credentialsRepository;
+    private final CommentoRepository commentoRepository;
     public CommentoService(CommentoRepository commentoRepository, CorsoRepository corsoRepository, CredentialsRepository credentialsRepository){
         this.commentoRepository = commentoRepository;
         this.corsoRepository = corsoRepository;

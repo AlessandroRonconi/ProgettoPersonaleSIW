@@ -28,9 +28,9 @@ import jakarta.validation.Valid;
 @Controller
 public class CorsoController {
 
-    private CorsoService corsoService;
-    private CommentoService commentoService;
-    private IstruttoreService istruttoreService;
+    private final CorsoService corsoService;
+    private final CommentoService commentoService;
+    private final IstruttoreService istruttoreService;
 
     public CorsoController(CorsoService corsoService, CommentoService commentoService,
             IstruttoreService istruttoreService) {
@@ -170,11 +170,7 @@ public class CorsoController {
         try {
             corsoService.update(corsoForm, id, istruttoreId); // passi il corso vecchio con id ed il corso modificato
                                                               // corsoForm
-        } catch (DuplicateCorsoException e) {
-            model.addAttribute("istruttori", istruttoreService.findAll());
-            model.addAttribute("errorMessage", e.getMessage());
-            return "admin/corsi/form";
-        } catch (CorsoOrarioConflictException e) {
+        } catch (DuplicateCorsoException | CorsoOrarioConflictException e) {
             model.addAttribute("istruttori", istruttoreService.findAll());
             model.addAttribute("errorMessage", e.getMessage());
             return "admin/corsi/form";
