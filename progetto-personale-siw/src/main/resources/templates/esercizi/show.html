@@ -17,12 +17,14 @@
     <thead>
         <tr>
             <th>Nome</th>
+            <th>Rimuovi</th>
         </tr>
     </thead>
 
     <tbody>
         <tr th:each="e : ${esercizi}">
             <td th:text="${e.nome}"></td>
+            <td th:href="@{/admin/esercizi/{id}/delete(id=${esercizio.id})}"></td>
         </tr>
     </tbody>
 
