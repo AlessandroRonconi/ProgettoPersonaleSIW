@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -50,6 +52,12 @@ public class EsercizioController {
         return "redirect:/esercizi";
 
     }
+    
+    @PostMapping("/admin/esercizi/{id}/delete")
+    public String deleteEsercizio() {
+        return new String();
+    }
+    
     
     
     
