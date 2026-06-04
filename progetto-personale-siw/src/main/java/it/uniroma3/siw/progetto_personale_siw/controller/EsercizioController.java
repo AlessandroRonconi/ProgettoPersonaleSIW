@@ -6,8 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateEsercizioException;
 import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
