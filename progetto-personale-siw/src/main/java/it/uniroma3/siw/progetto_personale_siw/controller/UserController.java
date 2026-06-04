@@ -24,19 +24,19 @@ import it.uniroma3.siw.progetto_personale_siw.service.PrenotazioneService;
 @Controller
 public class UserController {
 
-    private CredentialsService credentialsService;
-    private CorsoService corsoService;
-    private PrenotazioneService prenotazioneService;
-    private AbbonamentoService abbonamentoService;
-    public UserController(AbbonamentoService abbonamentoService, CredentialsService credentialsService, CorsoService corsoService,
+    private final CredentialsService credentialsService;
+    private final CorsoService corsoService;
+    private final PrenotazioneService prenotazioneService;
+    private final AbbonamentoService abbonamentoService;
+
+    public UserController(AbbonamentoService abbonamentoService, CredentialsService credentialsService,
+            CorsoService corsoService,
             PrenotazioneService prenotazioneService) {
         this.credentialsService = credentialsService;
         this.prenotazioneService = prenotazioneService;
         this.corsoService = corsoService;
         this.abbonamentoService = abbonamentoService;
     }
-
-    
 
     @GetMapping("/utente/profilo")
     public String getPaginaUser(@AuthenticationPrincipal UserDetails userDetails, Model model) {

@@ -14,8 +14,8 @@ import it.uniroma3.siw.progetto_personale_siw.service.PrenotazioneService;
 @Controller
 public class PrenotazioneController {
 
-    private PrenotazioneService prenotazioneService;
-    private CredentialsService credentialsService;
+    private final PrenotazioneService prenotazioneService;
+    private final CredentialsService credentialsService;
 
     public PrenotazioneController(PrenotazioneService prenotazioneService, CredentialsService credentialsService) {
         this.prenotazioneService = prenotazioneService;

@@ -1,10 +1,5 @@
 package it.uniroma3.siw.progetto_personale_siw.controller;
 
-import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateEsercizioException;
-import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
-import it.uniroma3.siw.progetto_personale_siw.service.EsercizioService;
-import jakarta.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,13 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateEsercizioException;
+import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
+import it.uniroma3.siw.progetto_personale_siw.service.EsercizioService;
+import jakarta.validation.Valid;
+
 
 
 
 @Controller
 public class EsercizioController {
 
-    private EsercizioService esercizioService;
+    private final EsercizioService esercizioService;
 
     EsercizioController(EsercizioService esercizioService) {
         this.esercizioService = esercizioService;
