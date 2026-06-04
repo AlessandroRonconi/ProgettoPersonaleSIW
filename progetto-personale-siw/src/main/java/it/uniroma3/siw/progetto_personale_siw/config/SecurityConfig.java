@@ -62,11 +62,14 @@ public class SecurityConfig {
             authorize.requestMatchers(HttpMethod.POST, "/utente/prenotazioni/cancella/*").authenticated();
             authorize.requestMatchers(HttpMethod.GET, "/utente/prenota-corsi").hasAuthority(Credentials.USER_ROLE);
             authorize.requestMatchers(HttpMethod.POST, "/utente/prenota/*").hasAuthority(Credentials.USER_ROLE);
+            authorize.requestMatchers(HttpMethod.GET, "/corsi/*/commenti/**").authenticated();
+            authorize.requestMatchers(HttpMethod.POST, "/corsi/*/commenti/**").authenticated();
 
             // autorizzazioni per admin
             authorize.requestMatchers(HttpMethod.GET, "/admin/**").hasAuthority(Credentials.ADMIN_ROLE);
             authorize.requestMatchers(HttpMethod.POST, "/admin/**").hasAuthority(Credentials.ADMIN_ROLE);
-            authorize.requestMatchers(HttpMethod.GET, "/esercizi", "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE);
+            authorize.requestMatchers(HttpMethod.GET, "/esercizi", "/esercizi/new")
+                    .hasAuthority(Credentials.ADMIN_ROLE);
             authorize.requestMatchers(HttpMethod.POST, "/esercizi/new").hasAuthority(Credentials.ADMIN_ROLE);
         });
 
