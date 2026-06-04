@@ -36,7 +36,7 @@
 
         <a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{'/admin/corsi/' + ${corso.id} + '/edit'}">Modifica</a>
 
-        <form th:action="@{/admin/corsi/{id}/delete(id=${corso.id})}" method="post"
+        <form sec:authorize="hasAnyAuthority('ADMIN')" th:action="@{/admin/corsi/{id}/delete(id=${corso.id})}" method="post"
             onsubmit="return confirm('Vuoi davvero eliminare questo corso? Verranno eliminate anche tutte le prenotazioni associate.')">
 
             <button type="submit">Elimina</button>
