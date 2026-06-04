@@ -1,7 +1,5 @@
 package it.uniroma3.siw.progetto_personale_siw.service;
 
-import it.uniroma3.siw.progetto_personale_siw.repository.EsercizioRepository;
-
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -9,12 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateEsercizioException;
 import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
+import it.uniroma3.siw.progetto_personale_siw.repository.EsercizioRepository;
 
 @Service
 @Transactional
 public class EsercizioService {
 
-    private EsercizioRepository esercizioRepository;
+    private final EsercizioRepository esercizioRepository;
 
     EsercizioService(EsercizioRepository esercizioRepository) {
         this.esercizioRepository = esercizioRepository;

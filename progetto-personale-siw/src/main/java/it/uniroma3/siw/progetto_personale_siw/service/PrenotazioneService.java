@@ -18,9 +18,9 @@ import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
 @Transactional
 public class PrenotazioneService {
 
-    private UserRepository userRepository;
-    private CorsoRepository corsoRepository;
-    private PrenotazioneRepository prenotazioneRepository;
+    private final UserRepository userRepository;
+    private final CorsoRepository corsoRepository;
+    private final PrenotazioneRepository prenotazioneRepository;
 
     public PrenotazioneService(CorsoRepository corsoRepository, PrenotazioneRepository prenotazioneRepository,
             UserRepository userRepository) {

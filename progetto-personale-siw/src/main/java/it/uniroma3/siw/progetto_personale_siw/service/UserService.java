@@ -13,7 +13,7 @@ import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
 @Transactional
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
