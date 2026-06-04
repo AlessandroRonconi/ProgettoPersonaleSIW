@@ -51,7 +51,7 @@ public class SecurityConfig {
             // autorizzazioni generali
             authorize.requestMatchers(HttpMethod.GET,
                     "/", "/index", "/login", "/register",
-                    "/css/**", "/images/**", "/favicon.ico", "/corsi", "/tipi_abbonamenti", "/corsi/*/commenti",
+                    "/css/**", "/images/**", "/favicon.ico", "/error", "/corsi", "/tipi_abbonamenti", "/corsi/*/commenti",
                     "/corsi/calendario", "/staff")
                     .permitAll();
             authorize.requestMatchers(HttpMethod.POST, "/register", "/login").permitAll();
