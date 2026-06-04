@@ -17,14 +17,14 @@
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Rimuovi</th>
+            <th>Azione</th>
         </tr>
     </thead>
 
     <tbody>
         <tr th:each="e : ${esercizi}">
             <td th:text="${e.nome}"></td>
-            <td th:href="@{/admin/esercizi/{id}/delete(id=${esercizio.id})}"></td>
+            <td th:href="@{/admin/esercizi/{id}/delete(id=${e.id})}">Rimuovi</td>
         </tr>
     </tbody>
 
