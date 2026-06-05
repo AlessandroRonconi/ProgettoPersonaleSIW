@@ -39,7 +39,13 @@
             <td th:text="${esScheda.serie}"></td>
             <td th:text="${esScheda.ripetizioni}"></td>
             <td th:text="${esScheda.recuperoSec}"></td>
-            
+            <td>
+                <div sec:authorize="hasAnyAuthority('ADMIN')">
+                  <form th:action="@{'/admin/schede/' +  ${scheda.id} + '/esercizi/' + ${esScheda.id} + '/delete'}" method="POST" >
+                    <button type="submit">Elimina</button>
+                  </form>
+                </div>
+            </td>
         </tr>
     </tbody>
 </table>

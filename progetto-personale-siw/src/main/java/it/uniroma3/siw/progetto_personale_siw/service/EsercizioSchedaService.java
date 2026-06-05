@@ -14,9 +14,9 @@ import it.uniroma3.siw.progetto_personale_siw.repository.SchedaAllenamentoReposi
 @Service
 @Transactional
 public class EsercizioSchedaService {
-    private final EsercizioRepository esercizioRepository;
-    private final SchedaAllenamentoRepository schedaAllenamentoRepository;
-    private final EsercizioSchedaRepository esercizioSchedaRepository;
+    private  EsercizioRepository esercizioRepository;
+    private  SchedaAllenamentoRepository schedaAllenamentoRepository;
+    private  EsercizioSchedaRepository esercizioSchedaRepository;
 
     EsercizioSchedaService(EsercizioSchedaRepository esercizioSchedaRepository,
             SchedaAllenamentoRepository schedaAllenamentoRepository, EsercizioRepository esercizioRepository) {
@@ -40,5 +40,11 @@ public class EsercizioSchedaService {
 
         esercizioSchedaRepository.save(esercizioScheda);
     }
+
+    public void eliminaEsDaScheda(Long eserciziSchedaId) {
+        this.esercizioSchedaRepository.deleteById(eserciziSchedaId);
+    }
+
+   
 
 }

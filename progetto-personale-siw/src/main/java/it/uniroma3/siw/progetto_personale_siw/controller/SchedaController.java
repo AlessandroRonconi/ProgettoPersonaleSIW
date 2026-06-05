@@ -25,16 +25,18 @@ import it.uniroma3.siw.progetto_personale_siw.service.PersonalTrainerService;
 import it.uniroma3.siw.progetto_personale_siw.service.SchedaAllenamentoService;
 import it.uniroma3.siw.progetto_personale_siw.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class SchedaController {
 
-    private final EsercizioService esercizioService;
-    private final UserService userService;
-    private final PersonalTrainerService personalTrainerService;
-    private final CredentialsService credentialsService;
-    private final SchedaAllenamentoService schedaAllenamentoService;
-    private final EsercizioSchedaService esercizioSchedaService;
+    private  EsercizioService esercizioService;
+    private  UserService userService;
+    private  PersonalTrainerService personalTrainerService;
+    private  CredentialsService credentialsService;
+    private  SchedaAllenamentoService schedaAllenamentoService;
+    private  EsercizioSchedaService esercizioSchedaService;
 
     public SchedaController(EsercizioSchedaService esercizioSchedaService, CredentialsService credentialsService,
             SchedaAllenamentoService schedaAllenamentoService, UserService userService,
@@ -148,5 +150,12 @@ public class SchedaController {
                 esercizioScheda.getRecuperoSec());
         return "redirect:/admin/schede/" + id;
     }
+
+    @PostMapping("/admin/schede/{schedaId}/esercizi/{eserciziSchedaId}/delete")
+    public String deleteEsScheda(@PathVariable Long schedaId, @PathVariable Long eserciziSchedaId) {
+        this.esercizioSchedaService.eliminaEsDaScheda(eserciziSchedaId);
+        return "redirect:/admin/schede/" + schedaId;
+    }
+    
 
 }

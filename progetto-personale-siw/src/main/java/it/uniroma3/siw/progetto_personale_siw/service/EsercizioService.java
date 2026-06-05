@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.progetto_personale_siw.exception.DuplicateEsercizioException;
-import it.uniroma3.siw.progetto_personale_siw.exception.ResourceNotFoundException;
 import it.uniroma3.siw.progetto_personale_siw.model.Esercizio;
 import it.uniroma3.siw.progetto_personale_siw.repository.EsercizioRepository;
 

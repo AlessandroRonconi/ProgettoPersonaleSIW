@@ -24,13 +24,19 @@
     <tbody>
         <tr th:each="e : ${esercizi}">
             <td th:text="${e.nome}"></td>
-            <td th:href="@{/admin/esercizi/{id}/delete(id=${e.id})}">Rimuovi</td>
+            <td>
+                <div sec:authorize="hasAnyAuthority('ADMIN')">
+                  <form th:action="@{/admin/esercizi/{id}/delete(id=${e.id})}" method="POST" >
+                    <button type="submit">Elimina</button>
+                  </form>
+                </div>
+            </td>
         </tr>
     </tbody>
 
 </table>
 
-<a th:href="@{'/esercizi/new'}"> Aggiungi esercizio</a>
+<a th:href="@{'/esercizi/new'}"> Aggiungi esercizio</a> | 
 <a th:href="@{'/'}"> Torna alla home</a>
 
 </body>
