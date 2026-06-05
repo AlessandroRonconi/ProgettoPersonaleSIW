@@ -34,7 +34,7 @@ public class Credentials {
   private String ruolo;
 
   @Valid
-  @OneToOne(cascade = CascadeType.ALL) // significa chhe se salvi credential savli anche utente
+  @OneToOne(cascade = CascadeType.ALL) // significa che se salvi credential salvi anche utente
   private User user;
 
   public static String getDefaultRole() {
