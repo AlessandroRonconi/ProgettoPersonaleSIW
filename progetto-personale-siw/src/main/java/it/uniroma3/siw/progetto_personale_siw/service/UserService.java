@@ -13,10 +13,11 @@ import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
 @Transactional
 public class UserService {
 
-    private final UserRepository userRepository;
+    private  UserRepository userRepository;
     public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
+    @Transactional(readOnly = true)
     public List<User> findAll() {
         return (List<User>)this.userRepository.findAll();
     }

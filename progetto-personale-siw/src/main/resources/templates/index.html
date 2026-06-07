@@ -54,6 +54,12 @@
                 </div>
         </h2>
 
+        <h2>
+                <div sec:authorize="hasAnyAuthority('ADMIN')">
+                        <a th:href="@{/admin/elenco}">PT</a>
+                </div>
+        </h2>
+
         <header>
                 <div th:if="${userDetails}">
                         <form th:action="@{/logout}" method="POST" style="display:inline;">

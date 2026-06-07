@@ -16,8 +16,8 @@ import it.uniroma3.siw.progetto_personale_siw.repository.IstruttoreRepository;
 @Transactional
 public class CorsoService {
 
-    private final CorsoRepository corsoRepository;
-    private final IstruttoreRepository istruttoreRepository;
+    private  CorsoRepository corsoRepository;
+    private  IstruttoreRepository istruttoreRepository;
 
     public CorsoService(CorsoRepository corsoRepository, IstruttoreRepository istruttoreRepository) {
         this.corsoRepository = corsoRepository;

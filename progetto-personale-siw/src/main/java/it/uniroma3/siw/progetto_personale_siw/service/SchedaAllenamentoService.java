@@ -18,9 +18,9 @@ import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
 @Transactional
 public class SchedaAllenamentoService {
 
-    private final SchedaAllenamentoRepository schedaAllenamentoRepository;
-    private final UserRepository userRepository;
-    private final PersonalTrainerRepository personalTrainerRepository;
+    private  SchedaAllenamentoRepository schedaAllenamentoRepository;
+    private  UserRepository userRepository;
+    private  PersonalTrainerRepository personalTrainerRepository;
     public SchedaAllenamentoService(SchedaAllenamentoRepository schedaAllenamentoRepository, UserRepository userRepository, PersonalTrainerRepository personalTrainerRepository){
         this.schedaAllenamentoRepository = schedaAllenamentoRepository;
         this.userRepository = userRepository;
@@ -37,6 +37,8 @@ public class SchedaAllenamentoService {
         if (ptId != null) {
             PersonalTrainer pt = personalTrainerRepository.findById(ptId).orElseThrow(() -> new ResourceNotFoundException("PT non trovato"));
             scheda.setPt(pt);
+             user.setPt(pt);
+            userRepository.save(user);
         }
         boolean exists = schedaAllenamentoRepository.existsByUserAndDataInizioAndDataFine(user, scheda.getDataInizio(), scheda.getDataFine());
         if (exists) {
@@ -49,13 +51,12 @@ public class SchedaAllenamentoService {
         return (List<SchedaAllenamento>) this.schedaAllenamentoRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public SchedaAllenamento findById(Long id) {
         return this.schedaAllenamentoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Scheda non trovata"));
     }
 
     public void updadeScheda(Long idSchedaOld, SchedaAllenamento schedaNuova, Long ptId, Long userId) {
-         System.out.println("=== SERVICE updateScheda ===");
-    System.out.println("id da aggiornare: " + idSchedaOld);
         User user = this.userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("Utente non trovato"));
         
         SchedaAllenamento schedaOld = this.schedaAllenamentoRepository.findById(idSchedaOld).orElseThrow(() -> new ResourceNotFoundException("Scheda non trovata"));
@@ -72,6 +73,8 @@ public class SchedaAllenamentoService {
         if (ptId != null) {
             PersonalTrainer pt = personalTrainerRepository.findById(ptId).orElseThrow(() -> new ResourceNotFoundException("PT non trovato"));
             schedaOld.setPt(pt);
+             User user1 = schedaOld.getUser();
+            user1.setPt(pt);
         } else {
             schedaOld.setPt(null);
         }

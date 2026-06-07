@@ -18,9 +18,9 @@ import it.uniroma3.siw.progetto_personale_siw.repository.UserRepository;
 @Transactional
 public class PrenotazioneService {
 
-    private final UserRepository userRepository;
-    private final CorsoRepository corsoRepository;
-    private final PrenotazioneRepository prenotazioneRepository;
+    private  UserRepository userRepository;
+    private  CorsoRepository corsoRepository;
+    private  PrenotazioneRepository prenotazioneRepository;
 
     public PrenotazioneService(CorsoRepository corsoRepository, PrenotazioneRepository prenotazioneRepository,
             UserRepository userRepository) {
@@ -52,6 +52,7 @@ public class PrenotazioneService {
         prenotazioneRepository.save(p);
     }
 
+    @Transactional(readOnly = true)
     public List<Prenotazione> findByUser(User user) {
         return prenotazioneRepository.findByUser(user);
     }

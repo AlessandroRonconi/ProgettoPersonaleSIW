@@ -13,14 +13,17 @@ import it.uniroma3.siw.progetto_personale_siw.repository.AbbonamentoRepository;
 @Transactional
 public class AbbonamentoService {
 
-    private final AbbonamentoRepository abbonamentoRepository;
+    private  AbbonamentoRepository abbonamentoRepository;
     public AbbonamentoService(AbbonamentoRepository abbonamentoRepository){
         this.abbonamentoRepository = abbonamentoRepository;
     }
+
     @Transactional(readOnly = true)
     public List<Abbonamento> findAll() {
         return (List<Abbonamento>) this.abbonamentoRepository.findAll();
     }
+
+    @Transactional(readOnly = true)
     public Abbonamento findByUser(User user) {
         return this.abbonamentoRepository.findByUser(user);
     }

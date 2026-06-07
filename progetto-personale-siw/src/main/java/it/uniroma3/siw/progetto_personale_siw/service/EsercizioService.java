@@ -13,12 +13,13 @@ import it.uniroma3.siw.progetto_personale_siw.repository.EsercizioRepository;
 @Transactional
 public class EsercizioService {
 
-    private final EsercizioRepository esercizioRepository;
+    private  EsercizioRepository esercizioRepository;
 
     EsercizioService(EsercizioRepository esercizioRepository) {
         this.esercizioRepository = esercizioRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<Esercizio> findAll() {
         return (List<Esercizio>) this.esercizioRepository.findAll();
     }
@@ -30,10 +31,6 @@ public class EsercizioService {
         this.esercizioRepository.save(esercizio);
     }
 
-    /*public void deleteEsercizio(Long esercizioId) {
-        Esercizio esercizio = this.esercizioRepository.findById(esercizioId).orElseThrow(() -> new ResourceNotFoundException("Esercizio non trovato"));
-        esercizio.set
-    }*/
 
     public void deleteById(Long esercizioId) {
         this.esercizioRepository.deleteById(esercizioId);

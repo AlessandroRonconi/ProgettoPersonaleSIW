@@ -11,7 +11,7 @@ import it.uniroma3.siw.progetto_personale_siw.repository.TipoAbbonamentoReposito
 @Service
 @Transactional
 public class TipoAbbonamentoService {
-    private final TipoAbbonamentoRepository tipoAbbonamentoRepository;
+    private  TipoAbbonamentoRepository tipoAbbonamentoRepository;
 
     public TipoAbbonamentoService(TipoAbbonamentoRepository tipoAbbonamentoRepository) {
         this.tipoAbbonamentoRepository = tipoAbbonamentoRepository;
