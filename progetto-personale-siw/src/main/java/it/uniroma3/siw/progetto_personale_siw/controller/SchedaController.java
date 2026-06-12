@@ -25,7 +25,6 @@ import it.uniroma3.siw.progetto_personale_siw.service.PersonalTrainerService;
 import it.uniroma3.siw.progetto_personale_siw.service.SchedaAllenamentoService;
 import it.uniroma3.siw.progetto_personale_siw.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller

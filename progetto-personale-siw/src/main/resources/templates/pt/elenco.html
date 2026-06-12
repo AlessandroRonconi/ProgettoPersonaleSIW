@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Elenco personale trainer</title>
+        <link rel="stylesheet" th:href="@{/css/stile.css}" />
+    </head>
+
+    <body>
+        <h1>Elenco pt</h1>
+
+        <div th:each="pt : ${pts}">
+            <strong>
+                <span th:text="${pt.nome}"></span>
+            </strong>
+            <strong>
+                <span th:text="${pt.cognome}"></span>
+            </strong>
+
+
+            <ul th:if="${!pt.users.isEmpty()}">
+                <li th:each="user : ${pt.users}">
+                    Nome: <span th:text="${user.nome}"></span>
+                </li>
+            </ul>
+            <p th:if="${pt.users.isEmpty()}">
+                Nessun utente associato.
+            </p>
+        </div>
+    </body>
+</html>

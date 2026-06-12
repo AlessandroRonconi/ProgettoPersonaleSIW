@@ -13,16 +13,18 @@ import it.uniroma3.siw.progetto_personale_siw.repository.IstruttoreRepository;
 @Transactional
 public class IstruttoreService {
 
-    private final IstruttoreRepository istruttoreRepository;
+    private  IstruttoreRepository istruttoreRepository;
 
     IstruttoreService(IstruttoreRepository istruttoreRepository) {
         this.istruttoreRepository = istruttoreRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<Istruttore> findAll() {
         return (List<Istruttore>) this.istruttoreRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Optional<Istruttore> findById(Long id) {
         return this.istruttoreRepository.findById(id);
     }

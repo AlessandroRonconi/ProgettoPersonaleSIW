@@ -12,12 +12,13 @@ import it.uniroma3.siw.progetto_personale_siw.repository.PersonalTrainerReposito
 @Transactional
 public class PersonalTrainerService {
 
-    private final PersonalTrainerRepository personalTrainerRepository;
+    private  PersonalTrainerRepository personalTrainerRepository;
 
     PersonalTrainerService(PersonalTrainerRepository personalTrainerRepository) {
         this.personalTrainerRepository = personalTrainerRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<PersonalTrainer> findAll() {
         return (List<PersonalTrainer>) this.personalTrainerRepository.findAll();
     }
