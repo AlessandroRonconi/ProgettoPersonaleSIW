@@ -2,12 +2,11 @@
 INSERT INTO users(id, nome, cognome, email, data_di_nascita) VALUES (nextval('users_seq'), 'Admin', 'Admin', 'admin@palestra.it', '1990-01-01');
 --pw franco
 INSERT INTO users(id, nome, cognome, email, data_di_nascita) VALUES (nextval('users_seq'), 'Giorgio', 'Bianchi', 'giorgiobianchi@gmail.com', '1986-05-06');
---pw
+--pw sus
 
 -- Credentials
 INSERT INTO credentials(id, username, password, ruolo, user_id) VALUES (nextval('credentials_seq'), 'admin', '$2a$12$/owdlKFr85U5oLlQTC7rB.l.T1iamiXx1ezJQw/1F/kxblrZlrwUa', 'ADMIN', 1);
 INSERT INTO credentials(id, username, password, ruolo, user_id) VALUES (nextval('credentials_seq'), 'giorgio86', '$2a$12$7Vc.lGWRXJGmGZPDJXRNyexebBwMVcFhDa2GASJefTwvKPg1P8lmK', 'USER', 51);
--- la password sopra equivale a franco, quella sotto a sus
 
 -- Istruttori
 insert into istruttore(id, cognome, nome, specialita) values(nextval('istruttore_seq'), 'Esposito', 'Marco', 'Istruttore di funzionale');
@@ -66,7 +65,4 @@ insert into tipo_abbonamento(id, nome, durata_in_mesi, prezzo) values(nextval('t
 insert into tipo_abbonamento(id, nome, durata_in_mesi, prezzo) values(nextval('tipo_abbonamento_seq'), 'Annuale', 12, 300);
 
 -- Abbonamenti (associati ai tipi di abbonamenti tramite tipo_di_abbonamento_id)
-insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 1);
-insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 51);
-insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 101);
-insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 151);
+insert into abbonamento(data_fine, data_inizio, id, tipo_di_abbonamento_id, user_id) values('2025-01-31', '2025-01-01', nextval('abbonamento_seq'), 151, 51);

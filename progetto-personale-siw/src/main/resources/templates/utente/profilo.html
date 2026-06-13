@@ -10,7 +10,7 @@
 
     <h1>Profilo Utente</h1>
 
-    
+
     <p>
         <strong>Nome:</strong>
         <span th:text="${utente.nome}"></span>
@@ -23,7 +23,12 @@
 
     <p>
         <strong>Abbonamento:</strong>
-        <span th:text="${abbonamento.tipoDiAbbonamento.nome}"></span>
+        <span th:if="${abbonamento != null and abbonamento.tipoDiAbbonamento != null}"
+            th:text="${abbonamento.tipoDiAbbonamento.nome}">
+        </span>
+        <span th:unless="${abbonamento != null and abbonamento.tipoDiAbbonamento != null}">
+            Nessun abbonamento
+        </span>
     </p>
 
     <a th:href="@{/utente/prenota-corsi}">
@@ -37,7 +42,7 @@
     <a th:href="@{/utente/mie-schede}">
         Le mie schede
     </a>
- 
+
 
 </body>
 
